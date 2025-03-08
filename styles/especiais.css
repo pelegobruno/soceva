@@ -1,0 +1,14 @@
+/*******carta goleiro**********/
+.carta-goleiro {
+    background-image: url('https://futcardsfifa.com/app/uploads/2021/03/REAL-BETIS-WEB-min.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/*******carta treinador**********/
+.carta-treinador {
+    background-image: url('https://futcardsfifa.com/app/uploads/2020/10/FUTCARD-MADRIDISTA-T23-WEB-min.png');
+    background-size: cover;
+    background-position: center;
+    position: relative; /* Para permitir o posicionamento absoluto das estatísticas */
+}
