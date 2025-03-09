@@ -23,12 +23,12 @@ h3 {
 /**********MENU / ABAS**********/
 nav {
     position: absolute; /* Posiciona o nav em relação ao corpo */
-    top: 215px; /* Distância do topo */
+    top: 140px; /* Distância do topo */
     left: 30px; /* Distância da esquerda */
 }
 
 .menu-toggle {
-    font-size: 50px; /* Tamanho do ícone de traço */
+    font-size: 40px; /* Tamanho do ícone de traço */
     cursor: pointer; /* Mão ao passar o mouse */
     color: rgb(236, 38, 81); /* Cor do ícone */
 }
@@ -78,6 +78,34 @@ nav {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra */
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 table {
     width: 100%; /* Tabela ocupa toda a largura disponível */
     border-collapse: collapse; /* Remove espaços entre as células */
@@ -101,4 +129,20 @@ tbody tr:nth-child(even) {
 
 tbody tr:nth-child(odd) {
     background-color: rgba(255, 255, 215, 0.8); /* Cor de fundo para linhas ímpares */
+}
+
+/* Estilos para smartphones */
+@media (max-width: 400px) and (min-width: 100px) {
+    th, td {
+        padding: 8px; /* Reduz o padding nas células */
+        font-size: 14px; /* Ajusta o tamanho da fonte */
+    }
+
+    th {
+        font-size: 16px; /* Ajusta o tamanho da fonte do cabeçalho */
+    }
+
+    table {
+        margin: 10px 0; /* Reduz o espaço acima da tabela */
+    }
 }

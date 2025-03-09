@@ -7,13 +7,20 @@ body {
     margin: 0;
     padding: 0; /* Remove o padding padrão */
     text-align: center;
-    color: rgb(236, 38, 81); /* Ajusta a cor do texto para melhor visibilidade */
+    color: rgb(19, 18, 18); /* Ajusta a cor do texto para melhor visibilidade */
     font-family: Arial, sans-serif; /* Mantém a fonte padrão para o corpo */
-    line-height: 1.6; /* Melhora a legibilidade do texto */
+    line-height: 1.5; /* Melhora a legibilidade do texto */
 }
 
-h1, h3 {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Adiciona sombra ao texto para melhor contraste */
+h1 {
+    font-size: 1.8em; /* Tamanho da fonte para h1 */
+    text-shadow: 1px 0px 2px rgba(0, 0, 0, 0.6); /* Adiciona sombra ao texto para melhor contraste */
+    margin: 20px 0; /* Margens verticais para espaçamento */
+}
+
+h3 {
+    font-size: 1.3em; /* Tamanho da fonte para h3 */
+    text-shadow: 1px 0px 2px rgba(0, 0, 0, 0.6); /* Adiciona sombra ao texto para melhor contraste */
     margin: 20px 0; /* Margens verticais para espaçamento */
 }
 
@@ -52,12 +59,12 @@ a:hover {
 /**********MENU / ABAS**********/
 nav {
     position: absolute; /* Posiciona o nav em relação ao corpo */
-    top: 350px; /* Distância do topo */
-    left: 10px; /* Distância da esquerda */
+    top: 310px; /* Distância do topo */
+    left: 15px; /* Distância da esquerda */
 }
 
 .menu-toggle {
-    font-size: 50px; /* Tamanho do ícone de traço */
+    font-size: 40px; /* Tamanho do ícone de traço */
     cursor: pointer; /* Mão ao passar o mouse */
     color: rgb(236, 38, 81); /* Cor do ícone */
 }
@@ -97,6 +104,22 @@ nav {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Estilo da linha estilizada */
 .linha-estilizada {
     border: none; /* Remove a borda padrão */
@@ -108,67 +131,6 @@ nav {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra */
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8; /* Fundo suave */
-    color: #333; /* Texto escuro */
-    margin: 0;
-    padding: 0px;
-}
-
 h2 {
     text-align: center;
     color: rgb(236, 38, 81);
@@ -176,9 +138,9 @@ h2 {
 
 .goleadores, .dashboard {
     background: white; /* Fundo branco para se destacar */
-    border-radius: 0px; /* Bordas arredondadas */
+    border-radius: 15px; /* Bordas arredondadas */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    margin: 5px 0; /* Espaçamento entre seções */
+    margin: 100px 0; /* Espaçamento entre seções */
     padding: 1%; /* Espaçamento interno */
 }
 
@@ -189,7 +151,7 @@ table {
 
 th, td {
     border: 1px solid rgb(236, 38, 81); /* Borda nas células */
-    padding: 5px; /* Espaçamento interno nas células */
+    padding: 1px; /* Espaçamento interno nas células */
     text-align: center; /* Centraliza o texto */
 }
 
@@ -213,12 +175,12 @@ tbody tr:nth-child(odd) {
 
 .metric {
     text-align: center;
-    padding: 1px;
+    padding: 0.5px;
     border: 1px solid rgb(236, 38, 81);
-    border-radius: 8px; /* Bordas arredondadas */
+    border-radius: 10px; /* Bordas arredondadas */
     background-color: rgba(236, 38, 81, 0.1); /* Fundo suave para as métricas */
     flex: 1; /* Itens ocupam espaço igual */
-    margin: 0 10px; /* Margem entre as métricas */
+    margin: 0 8px; /* Margem entre as métricas */
 }
 
 .metric h4 {
