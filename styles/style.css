@@ -27,25 +27,18 @@ h3 {
 
 
 
+
+
+
 @font-face {
     font-family: 'TipografiaRealMadrid';
     src: url('../assets/fonts/TIPOGRAFIA-REAL-MADRID/RealMadrid2024_SportsFonts.otf') format('opentype');
 }
 
-
-
-
-
-
-
-
-
-
-
 /**********MENU / ABAS**********/
 nav {
     position: absolute; /* Posiciona o nav em relação ao corpo */
-    top: 230px; /* Distância do topo */
+    top: 215px; /* Distância do topo */
     left: 30px; /* Distância da esquerda */
 }
 
@@ -89,23 +82,6 @@ nav {
     background-color: rgba(236, 38, 81, 0.3); /* Fundo ao passar o mouse */
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Estilo da linha estilizada */
 .linha-estilizada {
     border: none; /* Remove a borda padrão */
@@ -122,6 +98,9 @@ nav {
     flex-wrap: wrap;
     justify-content: center;
 }
+
+
+
 
 
 /* cartas jogadores*/
@@ -217,4 +196,40 @@ nav {
     border-radius: 5px;
     color: #0f0f0f;
     font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*******carta goleiro**********/
+.carta-goleiro {
+    background-image: url('https://futcardsfifa.com/app/uploads/2021/03/REAL-BETIS-WEB-min.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/*******carta treinador**********/
+.carta-treinador {
+    background-image: url('https://futcardsfifa.com/app/uploads/2020/10/FUTCARD-MADRIDISTA-T23-WEB-min.png');
+    background-size: cover;
+    background-position: center;
+    position: relative; /* Para permitir o posicionamento absoluto das estatísticas */
 }
