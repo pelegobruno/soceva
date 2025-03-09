@@ -40,8 +40,8 @@ a:hover {
 .patrocinadores img {
     border-radius: 50%; /* Arredonda os logos */
     object-fit: cover; /* Ajusta a imagem para preencher o espaço sem distorção */
-    width: 100px; /* Define a largura dos logos */
-    height: 100px; /* Define a altura dos logos */
+    width: 50px; /* Define a largura dos logos */
+    height: auto; /* Define a altura dos logos */
     transition: transform 0.3s; /* Efeito de transição ao passar o mouse */
 }
 
@@ -52,8 +52,8 @@ a:hover {
 /**********MENU / ABAS**********/
 nav {
     position: absolute; /* Posiciona o nav em relação ao corpo */
-    top: 450px; /* Distância do topo */
-    left: 30px; /* Distância da esquerda */
+    top: 350px; /* Distância do topo */
+    left: 10px; /* Distância da esquerda */
 }
 
 .menu-toggle {
@@ -108,19 +108,17 @@ nav {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra */
 }
 
-.patrocinadores {
-    display: flex;
-    justify-content: center; /* Centraliza os logos horizontalmente */
-    margin-top: 50px; /* Espaço acima dos logos */
-}
 
-.patrocinadores img {
-    margin: 0 20px; /* Adiciona margem horizontal entre os logos */
-    width: 85px; /* Define a largura dos logos */
-    height: auto; /* Define a altura dos logos */
-    border-radius: 50%; /* Arredonda os logos para ficarem circulares */
-    object-fit: cover; /* Ajusta a imagem para preencher o espaço sem distorção */
-}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -168,7 +166,7 @@ body {
     background-color: #f8f8f8; /* Fundo suave */
     color: #333; /* Texto escuro */
     margin: 0;
-    padding: 20px;
+    padding: 0px;
 }
 
 h2 {
@@ -178,10 +176,10 @@ h2 {
 
 .goleadores, .dashboard {
     background: white; /* Fundo branco para se destacar */
-    border-radius: 8px; /* Bordas arredondadas */
+    border-radius: 0px; /* Bordas arredondadas */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    margin: 20px 0; /* Espaçamento entre seções */
-    padding: 20px; /* Espaçamento interno */
+    margin: 5px 0; /* Espaçamento entre seções */
+    padding: 1%; /* Espaçamento interno */
 }
 
 table {
@@ -191,7 +189,7 @@ table {
 
 th, td {
     border: 1px solid rgb(236, 38, 81); /* Borda nas células */
-    padding: 10px; /* Espaçamento interno nas células */
+    padding: 5px; /* Espaçamento interno nas células */
     text-align: center; /* Centraliza o texto */
 }
 
@@ -215,7 +213,7 @@ tbody tr:nth-child(odd) {
 
 .metric {
     text-align: center;
-    padding: 20px;
+    padding: 1px;
     border: 1px solid rgb(236, 38, 81);
     border-radius: 8px; /* Bordas arredondadas */
     background-color: rgba(236, 38, 81, 0.1); /* Fundo suave para as métricas */
