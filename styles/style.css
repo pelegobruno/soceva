@@ -91,8 +91,8 @@ nav {
     background-size: cover;
     background-position: center;
     border-radius: 15px;
-    width: 35px;
-    height: 65px;
+    width: 56px;
+    height: 100px;
     padding: 15px;
     margin: 15px;
     display: flex;
@@ -103,7 +103,7 @@ nav {
 
 .posicao {
     position: absolute; /* Posicionamento absoluto */
-    top: 25px; /* Distância do topo */
+    top: 35px; /* Distância do topo */
     left: 29%; /* Centraliza horizontalmente */
     transform: translateX(-50%); /* Ajusta a posição para o centro */
     font-size: 3px; /* Tamanho da fonte */
@@ -116,7 +116,7 @@ nav {
 
 .numero {
     position: absolute; /* Posicionamento absoluto */
-    top: 31px; /* Distância do topo */
+    top: 45px; /* Distância do topo */
     left: 28%; /* Centraliza horizontalmente */
     transform: translateX(-50%); /* Ajusta a posição para o centro */
     font-size: 5px; /* Tamanho da fonte */
@@ -128,11 +128,11 @@ nav {
 }
 
 .imagem-jogador {
-    width: 35px; /* Largura fixa */
-    height: 33px; /* Altura fixa */
+    width: 48px; /* Largura fixa */
+    height: 46px; /* Altura fixa */
     border-radius: 11px;
-    margin-top: 1px;
-    margin-left: 15px; /* Ajusta a margem à esquerda para mover a imagem para a direita */
+    margin-top: 6px;
+    margin-left: 23px; /* Ajusta a margem à esquerda para mover a imagem para a direita */
     object-fit: cover; /* Faz com que a imagem cubra a área definida sem distorção */
 }
 
@@ -142,9 +142,9 @@ nav {
     justify-content: center;
     margin-top: 1px;
     background: rgba(0, 0, 0, 0.3); /* Fundo levemente escurecido */
-    padding: 0px 8px;
-    border-radius: 25px;
-    width: 70%;
+    padding: -1px 1px;
+    border-radius: 15px;
+    width: 95%;
 }
 
 .nome {
@@ -159,25 +159,25 @@ nav {
 }
 
 .escudo {
-    width: 20px;
-    height: 8px;
+    width: 18px;
+    height: 10px;
     border-radius: 10px;
 }
 
 .estatisticas {
     position: absolute;
-    bottom: 17px;
+    bottom: 22px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0px;
-    width: 83%;
+    gap: 4px;
+    width: 65%;
     text-align: center;
     font-size: 4px;
 }
 
 .estatisticas div {
     padding: 1px;
-    border-radius: 1px;
+    border-radius: 5px;
     color: #0f0f0f;
     font-weight: bold;
 }
