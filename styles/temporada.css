@@ -140,24 +140,26 @@ nav {
 
 
 
+/* 🔹 Estilização Geral da Tabela */
 table {
-    width: 100%;
+    width: 100%; /* Reduz um pouco a largura para não encostar nas bordas */
+    max-width: 280px; /* Evita que fique muito larga */
+    margin: 10px auto; /* Centraliza horizontalmente */
     border-collapse: collapse;
-    margin-top: 10px;
-    font-size: 104px;
+    font-size: 10px; /* Fonte menor */
 }
 
 /* Cabeçalho e células */
 th, td {
-    border: 1px solid rgb(236, 38, 81);
-    padding: 6px; /* Reduzindo o espaçamento */
+    border: 0px solid rgb(236, 38, 81);
+    padding: 4px; /* Ajuste fino no espaçamento interno */
     text-align: center;
 }
 
 th {
     background-color: rgba(236, 38, 81, 0.8);
     color: white;
-    font-size: 14px; /* Diminui a fonte */
+    font-size: 9px;
 }
 
 /* Alterna cores entre as linhas */
@@ -169,52 +171,62 @@ tbody tr:nth-child(odd) {
     background-color: rgba(255, 255, 215, 0.8);
 }
 
-/* 🌟 RESPONSIVIDADE: Ajusta a tabela para caber na tela */
-@media (max-width: 360px) {
-    table, thead, tbody, th, td, tr {
-        display: block;
-        width: 90%;
+/* 📌 🔥 RESPONSIVIDADE: Ajuste para telas menores */
+@media (max-width: 400px) {
+    table {
+        width: 90%; /* Mantém um espaçamento nas laterais */
+        font-size: 8px;
+        margin: 50px auto; /* Centraliza */
     }
 
     thead {
         display: none; /* Esconde o cabeçalho na versão mobile */
     }
 
+    tbody, tr, td {
+        display: block;
+        width: 100%;
+    }
+
     tbody tr {
         border: 1px solid rgb(236, 38, 81);
-        margin-bottom: 6px;
-        padding: 8px;
+        margin-bottom: 5px;
+        padding: 4px;
         background-color: rgba(255, 255, 215, 0.8);
     }
 
     td {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         padding: 1px;
-        font-size: 12px; /* Reduz ainda mais a fonte */
-        border: none;
-        border-bottom: 1px solid rgb(236, 38, 81);
+        font-size: 8px;
+        border-bottom: 4px solid rgb(236, 38, 81);
     }
 
     td:last-child {
         border-bottom: none;
     }
 
+    /* 🔹 Adiciona um rótulo antes de cada campo */
     td::before {
         content: attr(data-label);
         font-weight: bold;
         color: rgb(236, 38, 81);
-        font-size: 12px;
+        font-size: 6px;
     }
 
-    /* 🔥 Ajuste especial para lista de gols */
+    /* 🔥 Ajuste para listas dentro da tabela */
     td ul {
-        font-size: 15px; /* Fonte menor para caber */
-        left: 100px;
+        font-size: 8px;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        margin-right: 100px;
     }
 
     td ul li {
-        margin-bottom: 5px;
+        margin-bottom: 0px;
     }
 }
 
