@@ -13,7 +13,6 @@
             <img src="assets/image/logo/SO CEVA.png" alt="Logo Só Ceva" width="180" height="auto">
             <h1>Bem-vindo ao Só Ceva</h1>
             <h3>Temporada 2025</h3>
-            <button id="installBtn" style="display: none;">📲 Baixar App</button>
             <div class="patrocinadores">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmvTGQvi3_Sb_4ZYXZahsOxkYniFMo7wxtvA&s" alt="viwatec" width="20" height="100">
                 <img src="https://online.fliphtml5.com/ktra/xeso/files/page/1.jpg?20200612093654&20200612093654" alt="exportação boteco" width="20" height="100">
@@ -32,6 +31,7 @@
         <ul class="menu" id="menu">
             <li><a href="jogadores.html">Jogadores</a></li> <!-- Link para a página de jogadores -->
             <li><a href="temporada.html">Temporada</a></li> <!-- Link para a página de temporada -->
+            <button id="installBtn">📲 Baixar App</button>
         </ul>
     </nav>
     
@@ -78,31 +78,31 @@
 <script src="scripts/automação.js"></script>
 <script>
     let installBtn = document.getElementById("installBtn");
-    let deferredPrompt;
+let deferredPrompt;
 
-    window.addEventListener("beforeinstallprompt", (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        installBtn.style.display = "block"; // Exibe o botão
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = "block"; // Garante que o botão aparece
 
-        installBtn.addEventListener("click", () => {
+    installBtn.addEventListener("click", () => {
+        if (deferredPrompt) {
             deferredPrompt.prompt();
             deferredPrompt.userChoice.then((choiceResult) => {
                 if (choiceResult.outcome === "accepted") {
                     console.log("Usuário aceitou instalar o app.");
-                    installBtn.style.display = "none";
                 } else {
                     console.log("Usuário recusou a instalação.");
                 }
                 deferredPrompt = null;
             });
-        });
+        }
     });
+});
 
-    window.addEventListener("appinstalled", () => {
-        console.log("App instalado com sucesso!");
-        installBtn.style.display = "none";
-    });
+window.addEventListener("appinstalled", () => {
+    console.log("App instalado com sucesso!");
+});
 </script>
 <script>if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js")
