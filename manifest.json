@@ -1,20 +1,21 @@
 {
-    "name": "so ceva",
+    "name": "Só Ceva",
     "short_name": "soceva",
-    "start_url": "/index.html",
+    "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#ffcc00",
     "theme_color": "#ec2651",
     "icons": [
-        {
-            "src": "icon-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "https://icons.iconarchive.com/icons/aha-soft/iron-man/128/Ironman-Mask-3-Old-icon.png",
-            "sizes": "https://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/pingus-icon-icon.png",
-            "type": "image/png"
-        }
+      {
+        "src": "./assets/image/icons/SO CEVA 192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "./assets/image/icons/SO CEVA 512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
     ]
-}
+  }
+  
