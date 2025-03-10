@@ -139,27 +139,26 @@ nav {
 
 
 
-
 /* 🔹 Estilização Geral da Tabela */
 table {
-    width: 400%; /* Reduz um pouco a largura para não encostar nas bordas */
-    max-width: 480px; /* Evita que fique muito larga */
-    margin: 100px auto; /* Centraliza horizontalmente */
+    width: 100%; /* Agora ocupa toda a tela corretamente */
+    max-width: 480px; /* Evita que fique muito grande */
+    margin: 20px auto; /* Centraliza horizontalmente */
     border-collapse: collapse;
-    font-size: 0px; /* Fonte menor */
+    font-size: 14px; /* Define um tamanho de fonte adequado */
 }
 
 /* Cabeçalho e células */
 th, td {
-    border: 0px solid rgb(236, 38, 81);
-    padding: 4px; /* Ajuste fino no espaçamento interno */
+    border: 0px solid rgb(236, 38, 81); /* Ativa as bordas */
+    padding: 6px; /* Melhor espaçamento interno */
     text-align: center;
 }
 
 th {
     background-color: rgba(236, 38, 81, 0.8);
     color: white;
-    font-size: 9px;
+    font-size: 12px;
 }
 
 /* Alterna cores entre as linhas */
@@ -174,9 +173,9 @@ tbody tr:nth-child(odd) {
 /* 📌 🔥 RESPONSIVIDADE: Ajuste para telas menores */
 @media (max-width: 600px) {
     table {
-        width: 90%; /* Mantém um espaçamento nas laterais */
-        font-size: 8px;
-        margin: 100px auto; /* Centraliza */
+        width: 80%; /* Mantém um espaçamento nas laterais */
+        font-size: 12px;
+        margin: 20px auto; /* Centraliza */
     }
 
     thead {
@@ -190,8 +189,8 @@ tbody tr:nth-child(odd) {
 
     tbody tr {
         border: 1px solid rgb(236, 38, 81);
-        margin-bottom: 15px;
-        padding: 4px;
+        margin-bottom: 10px;
+        padding: 6px;
         background-color: rgba(255, 255, 215, 0.8);
     }
 
@@ -199,9 +198,9 @@ tbody tr:nth-child(odd) {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1px;
-        font-size: 12px; /* Aumenta o tamanho da fonte */
-        border-bottom: 4px solid rgb(236, 38, 81);
+        padding: 4px;
+        font-size: 12px; /* Ajuste fino no tamanho da fonte */
+        border-bottom: 1px solid rgb(236, 38, 81);
     }
 
     td:last-child {
@@ -213,12 +212,12 @@ tbody tr:nth-child(odd) {
         content: attr(data-label);
         font-weight: bold;
         color: rgb(236, 38, 81);
-        font-size: 12px; /* Aumenta o tamanho da fonte */
+        font-size: 10px;
     }
 
     /* 🔥 Ajuste para listas dentro da tabela */
     td ul {
-        font-size: 12px; /* Aumenta o tamanho da fonte */
+        font-size: 12px;
         padding: 0;
         margin: 0;
         list-style-type: none;

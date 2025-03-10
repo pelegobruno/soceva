@@ -24,7 +24,7 @@ const jogadores = [
         imagem: "https://example.com/cassius.jpg", // Substituir com a imagem real
         escudoClube: "assets/image/logo/SO CEVA.png",
         numero: null,
-        posicao: "ATK", // Atacante
+        posicao: "MC", // Atacante
         estatisticas: { RIT: 80, DRI: 75, FIN: 78, PAS: 80, DEF: 60, FIS: 70 },
         tipo: "jogador"
     },
@@ -33,7 +33,7 @@ const jogadores = [
         imagem: "https://example.com/lucca.jpg", // Substituir com a imagem real
         escudoClube: "assets/image/logo/SO CEVA.png",
         numero: 10,
-        posicao: "MC", // Meio-Campo
+        posicao: "ALE", // Meio-Campo
         estatisticas: { RIT: 82, DRI: 80, FIN: 76, PAS: 77, DEF: 62, FIS: 72 },
         tipo: "jogador"
     },
@@ -51,7 +51,7 @@ const jogadores = [
         imagem: "https://example.com/everton.jpg", // Substituir com a imagem real
         escudoClube: "assets/image/logo/SO CEVA.png",
         numero: 14,
-        posicao: "ATK", // Atacante
+        posicao: "CB", // Atacante
         estatisticas: { RIT: 76, DRI: 79, FIN: 75, PAS: 74, DEF: 64, FIS: 70 },
         tipo: "jogador"
     },
@@ -60,7 +60,7 @@ const jogadores = [
         imagem: "https://example.com/guga.jpg", // Substituir com a imagem real
         escudoClube: "assets/image/logo/SO CEVA.png",
         numero: 9,
-        posicao: "DEF", // Defensor
+        posicao: "ATK", // Defensor
         estatisticas: { RIT: 78, DRI: 80, FIN: 72, PAS: 73, DEF: 61, FIS: 69 },
         tipo: "jogador"
     },
@@ -78,7 +78,7 @@ const jogadores = [
         imagem: "https://example.com/igor.jpg", // Substituir com a imagem real
         escudoClube: "assets/image/logo/SO CEVA.png",
         numero: null,
-        posicao: "DEF", // Defensor
+        posicao: "", // Defensor
         estatisticas: { RIT: 76, DRI: 75, FIN: 74, PAS: 71, DEF: 62, FIS: 68 },
         tipo: "jogador"
     },
@@ -87,7 +87,7 @@ const jogadores = [
         imagem: "https://example.com/cassiano.jpg", // Substituir com a imagem real
         escudoClube: "assets/image/logo/SO CEVA.png",
         numero: 13,
-        posicao: "DEF", // Defensor
+        posicao: "ATK", // Defensor
         estatisticas: { RIT: 78, DRI: 76, FIN: 75, PAS: 73, DEF: 60, FIS: 67 },
         tipo: "jogador"
     },
@@ -123,7 +123,7 @@ const jogadores = [
         imagem: "https://i.ibb.co/6N8Gm7K/Thiago-removebg-preview.png", // Substituir com a imagem real
         escudoClube: "assets/image/logo/SO CEVA.png",
         numero: null,
-        posicao: "DEF", // Defensor
+        posicao: "ALD", // Defensor
         estatisticas: { RIT: 75, DRI: 78, FIN: 73, PAS: 75, DEF: 63, FIS: 66 },
         tipo: "jogador"
     },
