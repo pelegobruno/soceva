@@ -1,14 +1,15 @@
 /**********CORPO + H3 E FONTS**********/
 body {
-    background-image: url('https://img.freepik.com/vetores-gratis/fundo-abstrato-do-futebol_23-2147510452.jpg'); /* URL da imagem do campo de futebol */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 215, 0, 0.9)); /* Degradê amarelo e branco */
     background-size: cover; /* Faz a imagem cobrir todo o fundo */
     background-position: center; /* Centraliza a imagem */
     background-repeat: no-repeat; /* Não repete a imagem */
     margin: 0;
-    padding: 5px;
+    padding: 0; /* Remove o padding padrão */
     text-align: center;
     color: rgb(236, 38, 81); /* Ajusta a cor do texto para melhor visibilidade */
     font-family: Arial, sans-serif; /* Mantém a fonte padrão para o corpo */
+    line-height: 1.5; /* Melhora a legibilidade do texto */
 }
 
 h3 {
@@ -23,12 +24,12 @@ h3 {
 /**********MENU / ABAS**********/
 nav {
     position: absolute; /* Posiciona o nav em relação ao corpo */
-    top: 140px; /* Distância do topo */
-    left: 30px; /* Distância da esquerda */
+    top: 154px; /* Distância do topo */
+    left: 10px; /* Distância da esquerda */
 }
 
 .menu-toggle {
-    font-size: 40px; /* Tamanho do ícone de traço */
+    font-size: 30px; /* Tamanho do ícone de traço */
     cursor: pointer; /* Mão ao passar o mouse */
     color: rgb(236, 38, 81); /* Cor do ícone */
 }
@@ -42,7 +43,7 @@ nav {
     background-color: white; /* Fundo do menu */
     border: 1px solid rgb(236, 38, 81); /* Bordas do menu */
     position: absolute; /* Posiciona o menu em relação ao nav */
-    top: 40px; /* Distância do topo em relação ao botão */
+    top: 35px; /* Distância do topo em relação ao botão */
     left: 0; /* Alinha à esquerda */
     z-index: 1000; /* Garante que o menu esteja acima de outros elementos */
 }
@@ -106,43 +107,114 @@ nav {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 table {
-    width: 100%; /* Tabela ocupa toda a largura disponível */
-    border-collapse: collapse; /* Remove espaços entre as células */
-    margin-top: 20px; /* Espaço acima da tabela */
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 104px;
 }
 
+/* Cabeçalho e células */
 th, td {
-    border: 1px solid rgb(236, 38, 81); /* Borda nas células */
-    padding: 10px; /* Espaçamento interno nas células */
-    text-align: center; /* Centraliza o texto */
+    border: 1px solid rgb(236, 38, 81);
+    padding: 6px; /* Reduzindo o espaçamento */
+    text-align: center;
 }
 
 th {
-    background-color: rgba(236, 38, 81, 0.8); /* Cor de fundo para cabeçalho */
-    color: white; /* Cor do texto do cabeçalho */
+    background-color: rgba(236, 38, 81, 0.8);
+    color: white;
+    font-size: 14px; /* Diminui a fonte */
 }
 
+/* Alterna cores entre as linhas */
 tbody tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.8); /* Cor de fundo para linhas pares */
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 tbody tr:nth-child(odd) {
-    background-color: rgba(255, 255, 215, 0.8); /* Cor de fundo para linhas ímpares */
+    background-color: rgba(255, 255, 215, 0.8);
 }
 
-/* Estilos para smartphones */
-@media (max-width: 400px) and (min-width: 100px) {
-    th, td {
-        padding: 8px; /* Reduz o padding nas células */
-        font-size: 14px; /* Ajusta o tamanho da fonte */
+/* 🌟 RESPONSIVIDADE: Ajusta a tabela para caber na tela */
+@media (max-width: 360px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 90%;
     }
 
-    th {
-        font-size: 16px; /* Ajusta o tamanho da fonte do cabeçalho */
+    thead {
+        display: none; /* Esconde o cabeçalho na versão mobile */
     }
 
-    table {
-        margin: 10px 0; /* Reduz o espaço acima da tabela */
+    tbody tr {
+        border: 1px solid rgb(236, 38, 81);
+        margin-bottom: 6px;
+        padding: 8px;
+        background-color: rgba(255, 255, 215, 0.8);
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        padding: 1px;
+        font-size: 12px; /* Reduz ainda mais a fonte */
+        border: none;
+        border-bottom: 1px solid rgb(236, 38, 81);
+    }
+
+    td:last-child {
+        border-bottom: none;
+    }
+
+    td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: rgb(236, 38, 81);
+        font-size: 12px;
+    }
+
+    /* 🔥 Ajuste especial para lista de gols */
+    td ul {
+        font-size: 15px; /* Fonte menor para caber */
+        left: 100px;
+    }
+
+    td ul li {
+        margin-bottom: 5px;
     }
 }
+

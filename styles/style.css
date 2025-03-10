@@ -16,20 +16,6 @@ h3 {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @font-face {
     font-family: 'TipografiaRealMadrid';
     src: url('../assets/fonts/TIPOGRAFIA-REAL-MADRID/RealMadrid2024_SportsFonts.otf') format('opentype');
@@ -38,12 +24,12 @@ h3 {
 /**********MENU / ABAS**********/
 nav {
     position: absolute; /* Posiciona o nav em relação ao corpo */
-    top: 215px; /* Distância do topo */
-    left: 30px; /* Distância da esquerda */
+    top: 117px; /* Distância do topo */
+    left: 40px; /* Distância da esquerda */
 }
 
 .menu-toggle {
-    font-size: 50px; /* Tamanho do ícone de traço */
+    font-size: 35px; /* Tamanho do ícone de traço */
     cursor: pointer; /* Mão ao passar o mouse */
     color: rgb(236, 38, 81); /* Cor do ícone */
 }
@@ -99,18 +85,14 @@ nav {
     justify-content: center;
 }
 
-
-
-
-
 /* cartas jogadores*/
 .carta {
     background-image: url('https://futcardsfifa.com/app/uploads/2022/04/RARE-GOLD-FC24style2023.png');
     background-size: cover;
     background-position: center;
     border-radius: 15px;
-    width: 220px;
-    height: 350px;
+    width: 35px;
+    height: 65px;
     padding: 15px;
     margin: 15px;
     display: flex;
@@ -121,10 +103,10 @@ nav {
 
 .posicao {
     position: absolute; /* Posicionamento absoluto */
-    top: -15px; /* Distância do topo */
-    left: 50%; /* Centraliza horizontalmente */
+    top: 25px; /* Distância do topo */
+    left: 29%; /* Centraliza horizontalmente */
     transform: translateX(-50%); /* Ajusta a posição para o centro */
-    font-size: 24px; /* Tamanho da fonte */
+    font-size: 3px; /* Tamanho da fonte */
     font-weight: bold; /* Negrito */
     color: black; /* Cor do número */
     font-family: 'TipografiaRealMadrid', sans-serif; /* Usando a nova fonte */
@@ -134,10 +116,10 @@ nav {
 
 .numero {
     position: absolute; /* Posicionamento absoluto */
-    top: 30px; /* Distância do topo */
-    left: 50%; /* Centraliza horizontalmente */
+    top: 31px; /* Distância do topo */
+    left: 28%; /* Centraliza horizontalmente */
     transform: translateX(-50%); /* Ajusta a posição para o centro */
-    font-size: 24px; /* Tamanho da fonte */
+    font-size: 5px; /* Tamanho da fonte */
     font-weight: bold; /* Negrito */
     color: black; /* Cor do número */
     font-family: 'TipografiaRealMadrid', sans-serif; /* Usando a nova fonte */
@@ -146,10 +128,11 @@ nav {
 }
 
 .imagem-jogador {
-    width: 145px; /* Largura fixa */
-    height: 140px; /* Altura fixa */
-    border-radius: 10px;
-    margin-top: 42px;
+    width: 35px; /* Largura fixa */
+    height: 33px; /* Altura fixa */
+    border-radius: 11px;
+    margin-top: 1px;
+    margin-left: 15px; /* Ajusta a margem à esquerda para mover a imagem para a direita */
     object-fit: cover; /* Faz com que a imagem cubra a área definida sem distorção */
 }
 
@@ -157,67 +140,47 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -1px;
+    margin-top: 1px;
     background: rgba(0, 0, 0, 0.3); /* Fundo levemente escurecido */
-    padding: 1px 8px;
-    border-radius: 15px;
+    padding: 0px 8px;
+    border-radius: 25px;
     width: 70%;
 }
 
 .nome {
     font-weight: bold;
-    font-size: 18px;
+    font-family: 'TipografiaRealMadrid', sans-serif; /* Usando a nova fonte */
+    font-size: 4px;
     color: white; /* Melhor contraste */
-    padding: 5px 10px;
+    padding: 5px01px;
     border-radius: 5px;
-    margin-right: 45px;
+    margin-right: 5px;
     text-transform: uppercase; /* Deixa o nome em caixa alta */
 }
 
 .escudo {
-    width: 75px;
-    height: 35px;
-    border-radius: 25px;
+    width: 20px;
+    height: 8px;
+    border-radius: 10px;
 }
 
 .estatisticas {
     position: absolute;
-    bottom: 65px;
+    bottom: 17px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
-    width: 85%;
+    gap: 0px;
+    width: 83%;
     text-align: center;
-    font-size: 15px;
+    font-size: 4px;
 }
 
 .estatisticas div {
-    padding: 5px;
-    border-radius: 5px;
+    padding: 1px;
+    border-radius: 1px;
     color: #0f0f0f;
     font-weight: bold;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*******carta goleiro**********/
 .carta-goleiro {

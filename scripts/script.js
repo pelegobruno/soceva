@@ -59,7 +59,7 @@ const jogadores = [
         nome: "Guga",
         imagem: "https://example.com/guga.jpg", // Substituir com a imagem real
         escudoClube: "assets/image/logo/SO CEVA.png",
-        numero: null,
+        numero: 9,
         posicao: "DEF", // Defensor
         estatisticas: { RIT: 78, DRI: 80, FIN: 72, PAS: 73, DEF: 61, FIS: 69 },
         tipo: "jogador"
