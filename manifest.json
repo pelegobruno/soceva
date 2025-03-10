@@ -7,12 +7,12 @@
   "theme_color": "#ec2651",
   "icons": [
     {
-      "src": "/soceva/assets/image/icons/SO-CEVA-192.png",
+      "src": "/assets/icons/SO CEVA.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/soceva/assets/image/icons/SO-CEVA-512.png",
+      "src": "/assets/icons/SO CEVA.png",
       "sizes": "512x512",
       "type": "image/png"
     }
