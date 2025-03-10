@@ -78,33 +78,36 @@
 <script src="scripts/automação.js"></script>
 <script>
     let installBtn = document.getElementById("installBtn");
-let deferredPrompt;
+    let deferredPrompt;
 
-window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    installBtn.style.display = "block"; // Garante que o botão aparece
+    window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.style.display = "block"; // Exibe o botão quando possível instalar
 
-    installBtn.addEventListener("click", () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === "accepted") {
-                    console.log("Usuário aceitou instalar o app.");
-                } else {
-                    console.log("Usuário recusou a instalação.");
-                }
-                deferredPrompt = null;
-            });
-        }
+        installBtn.addEventListener("click", () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === "accepted") {
+                        console.log("Usuário aceitou instalar o app.");
+                        installBtn.style.display = "none";
+                    } else {
+                        console.log("Usuário recusou a instalação.");
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        });
     });
-});
 
-window.addEventListener("appinstalled", () => {
-    console.log("App instalado com sucesso!");
-});
+    window.addEventListener("appinstalled", () => {
+        console.log("App instalado com sucesso!");
+        installBtn.style.display = "none";
+    });
 </script>
-<script>if ("serviceWorker" in navigator) {
+<script>
+if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js")
         .then(() => console.log("Service Worker registrado!"))
         .catch((err) => console.log("Erro no Service Worker:", err));
