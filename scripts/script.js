@@ -194,3 +194,24 @@ jogadores.forEach(jogador => {
     `;
     cartasContainer.appendChild(cartaDiv);
 });
+
+
+
+//////*BAIXAR APP*******************/
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    document.getElementById("installBtn").style.display = "block";
+});
+
+document.getElementById("installBtn").addEventListener("click", () => {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === "accepted") {
+            console.log("Usuário aceitou a instalação");
+        }
+        deferredPrompt = null;
+    });
+});

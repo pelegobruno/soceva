@@ -143,7 +143,7 @@ nav {
 table {
     width: 100%; /* Agora ocupa toda a tela corretamente */
     max-width: 480px; /* Evita que fique muito grande */
-    margin: 20px auto; /* Centraliza horizontalmente */
+    margin: 0px auto; /* Centraliza horizontalmente */
     border-collapse: collapse;
     font-size: 14px; /* Define um tamanho de fonte adequado */
 }
@@ -173,7 +173,7 @@ tbody tr:nth-child(odd) {
 /* 📌 🔥 RESPONSIVIDADE: Ajuste para telas menores */
 @media (max-width: 600px) {
     table {
-        width: 80%; /* Mantém um espaçamento nas laterais */
+        width: 90%; /* Mantém um espaçamento nas laterais */
         font-size: 12px;
         margin: 20px auto; /* Centraliza */
     }
@@ -221,7 +221,7 @@ tbody tr:nth-child(odd) {
         padding: 0;
         margin: 0;
         list-style-type: none;
-        margin-right: 100px;
+        margin-right: 180px;
     }
 
     td ul li {

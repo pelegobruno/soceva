@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Só Ceva - Início</title>
     <link rel="stylesheet" href="styles/inicio.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <header>
@@ -12,6 +13,7 @@
             <img src="assets/image/logo/SO CEVA.png" alt="Logo Só Ceva" width="180" height="auto">
             <h1>Bem-vindo ao Só Ceva</h1>
             <h3>Temporada 2025</h3>
+            <button id="installBtn">📲 Baixar App</button>
             <div class="patrocinadores">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmvTGQvi3_Sb_4ZYXZahsOxkYniFMo7wxtvA&s" alt="viwatec" width="20" height="100">
                 <img src="https://online.fliphtml5.com/ktra/xeso/files/page/1.jpg?20200612093654&20200612093654" alt="exportação boteco" width="20" height="100">
@@ -74,5 +76,28 @@
 
 <script src="scripts/script.js"></script>
 <script src="scripts/automação.js"></script>
+<script>
+    let installBtn = document.getElementById("installBtn");
+    let deferredPrompt;
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.style.display = "block"; // Mostra o botão
+
+        installBtn.addEventListener("click", () => {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === "accepted") {
+                    console.log("Usuário aceitou a instalação.");
+                    installBtn.style.display = "none"; // Esconde o botão depois de instalar
+                } else {
+                    console.log("Usuário recusou a instalação.");
+                }
+                deferredPrompt = null;
+            });
+        });
+    });
+</script>
 </body>
 </html>
