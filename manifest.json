@@ -1,7 +1,7 @@
 {
   "name": "S.C. Só Ceva",
   "short_name": "S. C. só ceva",
-  "start_url": "/soceva/",
+  "start_url": "/soceva/info.html",
   "display": "standalone",
   "background_color": "#ffcc00",
   "theme_color": "#ec2651",
