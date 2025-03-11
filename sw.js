@@ -1,11 +1,13 @@
 const CACHE_NAME = "soceva-cache-v1";
 const urlsToCache = [
-  "/soceva/",
-  "/soceva/info.html",
-  "/soceva/styles/style.css",
-  "/soceva/scripts/app.js",
-  "/soceva/assets/icons/SO-CEVA-192.png",
-  "/soceva/assets/icons/SO-CEVA-512.png"
+  "index.html",
+  "info.html",
+  "styles/style.css",
+  "scripts/script.js",
+  "scripts/automação.js",
+  "assets/image/logo/SO CEVA.png",
+  "assets/icons/SO-CEVA-192.png",
+  "assets/icons/SO-CEVA-512.png"
 ];
 
 self.addEventListener("install", (event) => {
