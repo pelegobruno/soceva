@@ -57,6 +57,22 @@ const jogadores = [
         tipo: "jogador"
     },
     {
+        nome: "Alex",
+        imagem: "https://example.com/alex.jpg", // Substituir com a imagem real
+        escudoClube: "assets/image/logo/SO CEVA.png",
+        numero: 12,
+        posicao: "CB", // Centro-Baixo
+        estatisticas: {
+            RIT: 80,
+            DRI: 78,
+            FIN: 76,
+            PAS: 75,
+            DEF: 65,
+            FIS: 72
+        },
+        tipo: "jogador"
+    },
+    {
         nome: "Everton",
         imagem: "https://example.com/everton.jpg", // Substituir com a imagem real
         escudoClube: "assets/image/logo/SO CEVA.png",
