@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> <!-- Importa a fonte Poppins -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif; /* Altera a fonte para Poppins */
+            margin: 0; /* Remove margens padrão */
+            padding: 5px;
+            background: linear-gradient(to bottom, #fff 10%, #ffeb3b 100%); /* Degradê branco para amarelo */
+            text-align: center;
+            position: relative; /* Para posicionar a espuma */
+        }
+        .container {
+            max-width: 700px;
+            margin: 90px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative; /* Para que a espuma fique acima */
+            z-index: 1; /* Mantém o container acima do fundo */
+        }
+        .foam {
+            position: absolute;
+            top: -20px; /* Faz a espuma "sair" do topo do copo */
+            left: 50%;
+            width: 100px;
+            height: 40px;
+            background: white;
+            border-radius: 50% 50% 0 0; /* Estilo de espuma arredondada */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            transform: translateX(-50%);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+            text-align: justify; /* Justifica o texto */
+        }
+        ul {
+            text-align: left; /* Alinha o texto da lista à esquerda */
+        }
+        .button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .logo {
+            width: auto; /* Largura automática para manter proporção */
+            height: 80px; /* Define a altura do logo */
+            max-width: 100%; /* Garante que o logo não ultrapasse a largura do container */
+            margin-bottom: 20px; /* Espaço abaixo do logo */
+            position: relative; /* Para posicionar a roda */
+        }
+        .loader {
+    position: absolute;
+    top: 9%;
+    left: 49.1%;
+    width: 80px; /* Tamanho da roda */
+    height: 80px; /* Tamanho da roda */
+    border: 6px solid rgba(234, 255, 42, 0.986);
+    border-top: 4px solid #070707; /* Cor do topo para efeito de loading */
+    border-radius: 60%;
+    animation: spin 1s linear infinite; /* Animação de rotação */
+    transform: translate(-50%, -50%); /* Mantém a roda centralizada */
+    z-index: 2; /* Garante que fique acima do fundo */
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+
+    </style>
+    <script>
+        function showMessage() {
+            alert("Obrigado por usar nossos aplicativos!");
+        }
+    </script>
+</head>
+<body>
+    <div class="foam"></div> <!-- Adiciona a espuma -->
+    <div class="container">
+        <div class="loader"></div> <!-- Roda girando -->
+        <img src="assets/image/logo/SO CEVA.png" alt="Logo Só Ceva" class="logo"> <!-- Substitua URL_DO_SEU_LOGO pelo link da sua imagem -->
+        <h1>Só Ceva APP</h1>
+        <p>Bem-vindo ao nosso app! Aqui você encontra todas as informações necessárias sobre sua funcionalidade e uso.</p>
+        <p><strong>Versão:</strong> 1.0.0</p>
+        <p><strong>Desenvolvedor:</strong> Pelego Bruno</p>
+        <p><strong>Contato:</strong> contato@socevaapp.com</p>
+        <h2>Recursos do Aplicativo:</h2>
+        <ul>
+            <li>Marcação de jogos e eventos da equipe</li>
+            <li>Informações sobre temporadas e campeonatos</li>
+            <li>Gerenciamento de escalações e estatísticas dos jogadores</li>
+    </div>
+
+    
+<button id="installBtn" style="display: none;">📲 Baixar App</button>
+
+<script>
+  let deferredPrompt;
+
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    deferredPrompt = event;
+    document.getElementById("installBtn").style.display = "block";
+  });
+
+  document.getElementById("installBtn").addEventListener("click", () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === "accepted") {
+          console.log("Usuário aceitou instalar o PWA");
+        } else {
+          console.log("Usuário recusou instalar o PWA");
+        }
+        deferredPrompt = null;
+        document.getElementById("installBtn").style.display = "none";
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
