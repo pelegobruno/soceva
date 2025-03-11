@@ -142,7 +142,7 @@ nav {
 /* 🔹 Estilização Geral da Tabela */
 table {
     width: 100%; /* Agora ocupa toda a tela corretamente */
-    max-width: 480px; /* Evita que fique muito grande */
+    max-width: 75px; /* Evita que fique muito grande */
     margin: 0px auto; /* Centraliza horizontalmente */
     border-collapse: collapse;
     font-size: 14px; /* Define um tamanho de fonte adequado */
@@ -198,9 +198,9 @@ tbody tr:nth-child(odd) {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 4px;
-        font-size: 12px; /* Ajuste fino no tamanho da fonte */
-        border-bottom: 1px solid rgb(236, 38, 81);
+        padding: 2px;
+        font-size: 8px; /* Ajuste fino no tamanho da fonte */
+        border-bottom: 2px solid rgb(236, 38, 81);
     }
 
     td:last-child {
@@ -217,7 +217,7 @@ tbody tr:nth-child(odd) {
 
     /* 🔥 Ajuste para listas dentro da tabela */
     td ul {
-        font-size: 12px;
+        font-size: 6px;
         padding: 0;
         margin: 0;
         list-style-type: none;

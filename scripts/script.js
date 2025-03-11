@@ -1,4 +1,14 @@
 const jogadores = [
+    // Técnico
+    {
+        nome: "Jeferson",
+        imagem: "https://i.ibb.co/C88y09g/Jeferson-removebg-preview.png", // Substituir com a imagem real
+        escudoClube: "assets/image/logo/SO CEVA.png",
+        numero: null,
+        posicao: "TEC", // Técnico
+        estatisticas: { MOT: 90, TAT: 85, ORI: 88 },
+        tipo: "tecnico"
+    },
     // Goleiros
     {
         nome: "Marcinho",
@@ -92,6 +102,15 @@ const jogadores = [
         tipo: "jogador"
     },
     {
+        nome: "Roberth",
+        imagem: "https://example.com/cassiano.jpg", // Substituir com a imagem real
+        escudoClube: "assets/image/logo/SO CEVA.png",
+        numero: null,
+        posicao: "ALD", // Defensor
+        estatisticas: { RIT: 78, DRI: 76, FIN: 75, PAS: 73, DEF: 60, FIS: 67 },
+        tipo: "jogador"
+    },
+    {
         nome: "Pelego",
         imagem: "https://i.ibb.co/wNZbZgd/Pelego-removebg-preview.png", // Substituir com a imagem real
         escudoClube: "assets/image/logo/SO CEVA.png",
@@ -126,17 +145,8 @@ const jogadores = [
         posicao: "ALD", // Defensor
         estatisticas: { RIT: 75, DRI: 78, FIN: 73, PAS: 75, DEF: 63, FIS: 66 },
         tipo: "jogador"
-    },
-    // Técnico
-    {
-        nome: "Jeferson",
-        imagem: "https://i.ibb.co/C88y09g/Jeferson-removebg-preview.png", // Substituir com a imagem real
-        escudoClube: "assets/image/logo/SO CEVA.png",
-        numero: null,
-        posicao: "TEC", // Técnico
-        estatisticas: { MOT: 90, TAT: 85, ORI: 88 },
-        tipo: "tecnico"
     }
+    
 ];
 
 const cartasContainer = document.getElementById("cartas-container");

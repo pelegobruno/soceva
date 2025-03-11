@@ -106,7 +106,7 @@ nav {
     top: 35px; /* Distância do topo */
     left: 29%; /* Centraliza horizontalmente */
     transform: translateX(-50%); /* Ajusta a posição para o centro */
-    font-size: 3px; /* Tamanho da fonte */
+    font-size: 5px; /* Tamanho da fonte */
     font-weight: bold; /* Negrito */
     color: black; /* Cor do número */
     font-family: 'TipografiaRealMadrid', sans-serif; /* Usando a nova fonte */
@@ -150,7 +150,7 @@ nav {
 .nome {
     font-weight: bold;
     font-family: 'TipografiaRealMadrid', sans-serif; /* Usando a nova fonte */
-    font-size: 4px;
+    font-size: 6px;
     color: white; /* Melhor contraste */
     padding: 5px01px;
     border-radius: 5px;
@@ -169,14 +169,14 @@ nav {
     bottom: 22px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 4px;
+    gap: 5px;
     width: 65%;
     text-align: center;
-    font-size: 4px;
+    font-size: 5px;
 }
 
 .estatisticas div {
-    padding: 1px;
+    padding: 0px;
     border-radius: 5px;
     color: #0f0f0f;
     font-weight: bold;
