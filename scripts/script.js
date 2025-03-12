@@ -223,6 +223,12 @@ jogadores.forEach(jogador => {
 
 
 
+
+
+
+
+
+
 //////*BAIXAR APP*******************/
 let deferredPrompt;
 

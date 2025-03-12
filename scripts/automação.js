@@ -99,4 +99,33 @@ function toggleMenu() {
             carregarTemporada();
         };
 
-        /******buscador de informações la da temporada */
+                      //ativação do card ficar grandeda temporada
+        document.querySelectorAll('#tabela-jogadores tbody tr').forEach(row => {
+            row.addEventListener('click', function() {
+                const data = this.cells[0].innerText;
+                const hora = this.cells[1].innerText;
+                const jogo = this.cells[2].innerText;
+                const local = this.cells[3].innerText;
+                const gols = this.cells[4].innerText;
+        
+                document.getElementById('modal-data').innerText = `Data: ${data}`;
+                document.getElementById('modal-hora').innerText = `Hora: ${hora}`;
+                document.getElementById('modal-jogo').innerText = jogo;
+                document.getElementById('modal-local').innerText = `Local: ${local}`;
+                document.getElementById('modal-gols').innerText = `Gols: ${gols}`;
+                
+                document.getElementById('modal').style.display = 'block';
+            });
+        });
+        
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+        
+        // Fechar modal ao clicar fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }

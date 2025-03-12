@@ -103,16 +103,6 @@ nav {
     background-color: rgba(236, 38, 81, 0.3); /* Fundo ao passar o mouse */
 }
 
-
-
-
-
-
-
-
-
-
-
 #installBtn {
     /* REMOVIDO: display: none; */
     background: linear-gradient(45deg, #ec2651, #ffcc00);
@@ -136,19 +126,6 @@ nav {
     background: linear-gradient(45deg, #ffcc00, #ec2651);
     transform: translateX(-50%) scale(1.05);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Estilo da linha estilizada */
 .linha-estilizada {
