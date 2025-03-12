@@ -99,4 +99,49 @@ function toggleMenu() {
             carregarTemporada();
         };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         /******buscador de informações la da temporada */
+
+
+
+
+
+
+
+        // Configuração do Firebase
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+// Inicializar o Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const messaging = firebase.messaging();
+
+// Obter o token para notificações
+document.getElementById('subscribe').addEventListener('click', async () => {
+    try {
+        const token = await messaging.getToken({ vapidKey: "BDoepgtf1BRX2755v1uN50Hb5Zwtsu76FI8YoYwNPrlXxmR2Kzhbz7ucfk-B9ycOyPs5vuwedzNu0jPooDAd0nY" });
+        console.log("Token de registro:", token);
+    } catch (error) {
+        console.error("Erro ao obter o token:", error);
+    }
+});
