@@ -181,110 +181,135 @@
 
 
 
-
         <h2>Estatuto SO CEVA</h2>
-<iframe src="https://drive.google.com/file/d/124uOFNi9R-GsB3lEzyWg6ByPdkyq1MFU/preview" allowfullscreen></iframe>
-
-<!-- Botão para iniciar a assinatura -->
-<button id="mostrarAssinaturaBtn">✍️ Assinar Estatuto</button>
-
-<!-- Área única para assinar -->
-<div id="assinaturaContainer" style="display: none; margin-top: 20px;">
-    <h3>Assine aqui</h3>
-    <canvas id="assinaturaCanvas" width="300" height="150" style="border:1px solid #000;"></canvas>
-    <br>
-    <button id="limparAssinaturaBtn">🗑 Limpar</button>
-    <button id="salvarAssinaturaBtn">💾 Salvar</button>
-</div>
-
-<!-- Container onde as assinaturas salvas serão exibidas -->
-<h3>Assinaturas Salvas:</h3>
-<div id="assinaturasSalvasContainer"></div>
-
-<script>
-    const mostrarAssinaturaBtn = document.getElementById("mostrarAssinaturaBtn");
-    const assinaturaContainer = document.getElementById("assinaturaContainer");
-    const assinaturaCanvas = document.getElementById("assinaturaCanvas");
-    const limparAssinaturaBtn = document.getElementById("limparAssinaturaBtn");
-    const salvarAssinaturaBtn = document.getElementById("salvarAssinaturaBtn");
-    const assinaturasSalvasContainer = document.getElementById("assinaturasSalvasContainer");
-    const ctx = assinaturaCanvas.getContext("2d");
-
-    let desenhando = false;
-    let assinaturas = JSON.parse(localStorage.getItem("assinaturas")) || [];
-
-    // Mostrar a área de assinatura
-    mostrarAssinaturaBtn.addEventListener("click", () => {
-        assinaturaContainer.style.display = "block";
-        mostrarAssinaturaBtn.style.display = "none";
-    });
-
-    // Evento para desenhar no canvas
-    assinaturaCanvas.addEventListener("mousedown", () => desenhando = true);
-    assinaturaCanvas.addEventListener("mouseup", () => {
-        desenhando = false;
-        ctx.beginPath();
-    });
-    assinaturaCanvas.addEventListener("mousemove", (event) => {
-        if (!desenhando) return;
-        ctx.lineWidth = 2;
-        ctx.lineCap = "round";
-        ctx.strokeStyle = "#000";
-        ctx.lineTo(event.offsetX, event.offsetY);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(event.offsetX, event.offsetY);
-    });
-
-    // Limpar a assinatura
-    limparAssinaturaBtn.addEventListener("click", () => {
-        ctx.clearRect(0, 0, assinaturaCanvas.width, assinaturaCanvas.height);
-    });
-
-    // Salvar assinatura e exibir
-    salvarAssinaturaBtn.addEventListener("click", () => {
-        const imagem = assinaturaCanvas.toDataURL("image/png");
-        assinaturas.push(imagem);
-        localStorage.setItem("assinaturas", JSON.stringify(assinaturas));
-        exibirAssinaturas();
-        ctx.clearRect(0, 0, assinaturaCanvas.width, assinaturaCanvas.height);
-    });
-
-    // Exibir as assinaturas salvas
-    function exibirAssinaturas() {
-        assinaturasSalvasContainer.innerHTML = "";
-        assinaturas.forEach((assinatura, index) => {
-            const assinaturaDiv = document.createElement("div");
-            assinaturaDiv.style.position = "relative";
-            assinaturaDiv.style.display = "inline-block";
-            assinaturaDiv.style.margin = "10px";
-
-            const img = document.createElement("img");
-            img.src = assinatura;
-            img.style.border = "1px solid #000";
-            img.style.maxWidth = "100px";
-            img.style.cursor = "pointer";
-
-            img.addEventListener("click", () => abrirMenuExcluir(index));
-
-            assinaturaDiv.appendChild(img);
-            assinaturasSalvasContainer.appendChild(assinaturaDiv);
-        });
-    }
-
-    // Abrir menu para excluir assinatura
-    function abrirMenuExcluir(index) {
-        if (confirm("Deseja excluir esta assinatura?")) {
-            assinaturas.splice(index, 1);
-            localStorage.setItem("assinaturas", JSON.stringify(assinaturas));
+        <iframe src="https://drive.google.com/file/d/124uOFNi9R-GsB3lEzyWg6ByPdkyq1MFU/preview" allowfullscreen></iframe>
+        
+        <!-- Botão para iniciar a assinatura -->
+        <button id="mostrarAssinaturaBtn">✍️ Assinar Estatuto</button>
+        
+        <!-- Área única para assinar -->
+        <div id="assinaturaContainer" style="display: none; margin-top: 20px;">
+            <h3>Assine aqui</h3>
+            <canvas id="assinaturaCanvas" width="300" height="150" style="border:1px solid #000;"></canvas>
+            <br>
+            <button id="limparAssinaturaBtn">🗑 Limpar</button>
+            <button id="salvarAssinaturaBtn">💾 Salvar</button>
+        </div>
+        
+        <!-- Container onde as assinaturas salvas serão exibidas -->
+        <h3>Assinaturas Salvas:</h3>
+        <div id="assinaturasSalvasContainer"></div>
+        
+        <script>
+            const mostrarAssinaturaBtn = document.getElementById("mostrarAssinaturaBtn");
+            const assinaturaContainer = document.getElementById("assinaturaContainer");
+            const assinaturaCanvas = document.getElementById("assinaturaCanvas");
+            const limparAssinaturaBtn = document.getElementById("limparAssinaturaBtn");
+            const salvarAssinaturaBtn = document.getElementById("salvarAssinaturaBtn");
+            const assinaturasSalvasContainer = document.getElementById("assinaturasSalvasContainer");
+            const ctx = assinaturaCanvas.getContext("2d");
+        
+            let desenhando = false;
+            let assinaturas = JSON.parse(localStorage.getItem("assinaturas")) || [];
+        
+            // Mostrar a área de assinatura
+            mostrarAssinaturaBtn.addEventListener("click", () => {
+                assinaturaContainer.style.display = "block";
+                mostrarAssinaturaBtn.style.display = "none";
+            });
+        
+            // Função para desenhar no canvas
+            function iniciarDesenho(event) {
+                desenhando = true;
+                desenhar(event);
+            }
+        
+            function pararDesenho() {
+                desenhando = false;
+                ctx.beginPath();
+            }
+        
+            function desenhar(event) {
+                if (!desenhando) return;
+        
+                ctx.lineWidth = 2;
+                ctx.lineCap = "round";
+                ctx.strokeStyle = "#000";
+        
+                const rect = assinaturaCanvas.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+        
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+            }
+        
+            // Eventos para mouse
+            assinaturaCanvas.addEventListener("mousedown", iniciarDesenho);
+            assinaturaCanvas.addEventListener("mouseup", pararDesenho);
+            assinaturaCanvas.addEventListener("mousemove", desenhar);
+        
+            // Eventos para toque
+            assinaturaCanvas.addEventListener("touchstart", (event) => {
+                event.preventDefault(); // Previne o comportamento padrão
+                iniciarDesenho(event.touches[0]);
+            });
+            assinaturaCanvas.addEventListener("touchend", pararDesenho);
+            assinaturaCanvas.addEventListener("touchmove", (event) => {
+                event.preventDefault(); // Previne o comportamento padrão
+                desenhar(event.touches[0]);
+            });
+        
+            // Limpar a assinatura
+            limparAssinaturaBtn.addEventListener("click", () => {
+                ctx.clearRect(0, 0, assinaturaCanvas.width, assinaturaCanvas.height);
+            });
+        
+            // Salvar assinatura e exibir
+            salvarAssinaturaBtn.addEventListener("click", () => {
+                const imagem = assinaturaCanvas.toDataURL("image/png");
+                assinaturas.push(imagem);
+                localStorage.setItem("assinaturas", JSON.stringify(assinaturas));
+                exibirAssinaturas();
+                ctx.clearRect(0, 0, assinaturaCanvas.width, assinaturaCanvas.height);
+            });
+        
+            // Exibir as assinaturas salvas
+            function exibirAssinaturas() {
+                assinaturasSalvasContainer.innerHTML = "";
+                assinaturas.forEach((assinatura, index) => {
+                    const assinaturaDiv = document.createElement("div");
+                    assinaturaDiv.style.position = "relative";
+                    assinaturaDiv.style.display = "inline-block";
+                    assinaturaDiv.style.margin = "10px";
+        
+                    const img = document.createElement("img");
+                    img.src = assinatura;
+                    img.style.border = "1px solid #000";
+                    img.style.maxWidth = "100px";
+                    img.style.cursor = "pointer";
+        
+                    img.addEventListener("click", () => abrirMenuExcluir(index));
+        
+                    assinaturaDiv.appendChild(img);
+                    assinaturasSalvasContainer.appendChild(assinaturaDiv);
+                });
+            }
+        
+            // Abrir menu para excluir assinatura
+            function abrirMenuExcluir(index) {
+                if (confirm("Deseja excluir esta assinatura?")) {
+                    assinaturas.splice(index, 1);
+                    localStorage.setItem("assinaturas", JSON.stringify(assinaturas));
+                    exibirAssinaturas();
+                }
+            }
+        
+            // Carregar assinaturas ao abrir a página
             exibirAssinaturas();
-        }
-    }
-
-    // Carregar assinaturas ao abrir a página
-    exibirAssinaturas();
-</script>
-
+        </script>
 
 
 
