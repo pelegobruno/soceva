@@ -241,3 +241,70 @@ document.getElementById("installBtn").addEventListener("click", () => {
         deferredPrompt = null;
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Inicializa o Firebase Messaging
+const messaging = firebase.messaging();
+
+async function solicitarPermissaoNotificacao() {
+    try {
+        const permission = await Notification.requestPermission();
+        if (permission === "granted") {
+            console.log("Permissão para notificações concedida.");
+            const token = await messaging.getToken({
+                vapidKey: "BEWTe4gEUNn8Uz8qLnXdBvHvIY8mdfvn2qe4_QFGnl5akv8Uyc0Q4N7zs2Eoigri55k-ZkB3cvYx4DYlrLO214c"
+            });
+
+            console.log("Token de registro:", token);
+            // Aqui você pode salvar o token no Firebase Database para enviar notificações futuras
+        } else {
+            console.log("Permissão para notificações negada.");
+        }
+    } catch (error) {
+        console.error("Erro ao solicitar permissão:", error);
+    }
+}
+
+// Chama a função ao carregar a página
+window.onload = solicitarPermissaoNotificacao;
+
+
+
+
