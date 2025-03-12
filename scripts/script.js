@@ -241,3 +241,106 @@ document.getElementById("installBtn").addEventListener("click", () => {
         deferredPrompt = null;
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Configuração do Firebase
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY", // Substitua pelo seu valor
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com", // Substitua pelo seu valor
+    projectId: "YOUR_PROJECT_ID", // Substitua pelo seu valor
+    storageBucket: "YOUR_PROJECT_ID.appspot.com", // Substitua pelo seu valor
+    messagingSenderId: "YOUR_SENDER_ID", // Substitua pelo seu valor
+    appId: "YOUR_APP_ID" // Substitua pelo seu valor
+};
+
+// Inicializar o Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const messaging = firebase.messaging();
+
+// Solicitar permissão para notificações ao carregar a página
+Notification.requestPermission().then((permission) => {
+    if (permission === "granted") {
+        console.log("Permissão para notificações concedida.");
+        return messaging.getToken({ vapidKey: "BEWTe4gEUNn8Uz8qLnXdBvHvIY8mdfvn2qe4_QFGnl5akv8Uyc0Q4N7zs2Eoigri55k-ZkB3cvYx4DYlrLO214c" });
+    } else {
+        console.log("Permissão para notificações negada.");
+    }
+}).then((token) => {
+    if (token) {
+        console.log("Token de registro:", token);
+        // Aqui você pode enviar o token para o seu servidor, se desejar.
+    }
+}).catch((error) => {
+    console.error("Erro ao obter o token:", error);
+});
+
+// Receber mensagens quando o aplicativo está em primeiro plano
+messaging.onMessage((payload) => {
+    console.log("Mensagem recebida. ", payload);
+    // Aqui você pode exibir a notificação ou um alerta
+});
