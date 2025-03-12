@@ -4,51 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informações</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> <!-- Importa a fonte Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Poppins', sans-serif; /* Altera a fonte para Poppins */
-            margin: 0; /* Remove margens padrão */
-            padding: 5px;
-            background: linear-gradient(to bottom, #fff 10%, #ffeb3b 100%); /* Degradê branco para amarelo */
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: linear-gradient(to bottom, #ffeb3b, #fff);
             text-align: center;
-            position: relative; /* Para posicionar a espuma */
+            color: #333;
+        }
+        header {
+            position: relative;
+            background-color: #f8f9fa;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        header img {
+            width: 150px;
+        }
+        h1, h2 {
+            color: #007BFF;
+        }
+        nav {
+            display: flex; /* Usando flexbox */
+            justify-content: space-between; /* Espaçamento entre os itens */
+            align-items: center; /* Alinhamento vertical */
+            background-color: #007BFF;
+            padding: 10px;
+            margin: 20px 0;
+        }
+        nav a {
+            flex: 1; /* Cada link ocupa um espaço igual */
+            color: white;
+            text-decoration: none;
+            text-align: center; /* Centraliza o texto */
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
         }
         .container {
-            max-width: 700px;
-            margin: 90px auto;
+            max-width: 800px;
+            margin: auto;
             background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            position: relative; /* Para que a espuma fique acima */
-            z-index: 1; /* Mantém o container acima do fundo */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .foam {
+        .loader {
             position: absolute;
-            top: -20px; /* Faz a espuma "sair" do topo do copo */
-            left: 50%;
-            width: 100px;
-            height: 40px;
-            background: white;
-            border-radius: 50% 50% 0 0; /* Estilo de espuma arredondada */
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            transform: translateX(-50%);
+            top: 20px; /* Ajuste para mover o loader para cima */
+            left: 37%; /* Centraliza horizontalmente */
+            transform: translateX(-50%); /* Centraliza o loader */
+            width: 80px;
+            height: 80px;
+            border: 6px solid rgba(234, 255, 42, 0.986);
+            border-top: 4px solid #070707;
+            border-radius: 50%;
+            animation: spin 5s linear infinite;
         }
-        h1, h2 {
-            color: #333;
-        }
-        p {
-            color: #666;
-            line-height: 1.6;
-            text-align: justify; /* Justifica o texto */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         ul {
-            text-align: left; /* Alinha o texto da lista à esquerda */
+            text-align: left;
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background: #f2f2f2;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
         }
         .button {
-            display: inline-block;
-            margin-top: 10px;
+            display: none; /* Esconde o botão */
+            margin-top: 20px;
             padding: 10px 20px;
             background-color: #007BFF;
             color: white;
@@ -58,33 +90,11 @@
         .button:hover {
             background-color: #0056b3;
         }
-        .logo {
-            width: auto; /* Largura automática para manter proporção */
-            height: 80px; /* Define a altura do logo */
-            max-width: 100%; /* Garante que o logo não ultrapasse a largura do container */
-            margin-bottom: 20px; /* Espaço abaixo do logo */
-            position: relative; /* Para posicionar a roda */
+        iframe {
+            width: 100%;
+            height: 600px; /* Ajuste a altura conforme necessário */
+            border: none;
         }
-        .loader {
-    position: absolute;
-    top: 9%;
-    left: 49.1%;
-    width: 80px; /* Tamanho da roda */
-    height: 80px; /* Tamanho da roda */
-    border: 6px solid rgba(234, 255, 42, 0.986);
-    border-top: 4px solid #070707; /* Cor do topo para efeito de loading */
-    border-radius: 60%;
-    animation: spin 1s linear infinite; /* Animação de rotação */
-    transform: translate(-50%, -50%); /* Mantém a roda centralizada */
-    z-index: 2; /* Garante que fique acima do fundo */
-}
-
-@keyframes spin {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-
     </style>
     <script>
         function showMessage() {
@@ -93,11 +103,17 @@
     </script>
 </head>
 <body>
-    <div class="foam"></div> <!-- Adiciona a espuma -->
+    <header>
+        <img src="assets/image/logo/SO CEVA.png" alt="Logo Só Ceva">
+        <div class="loader"></div> <!-- Loader posicionado acima do título -->
+    </header>
+    <h1>Só Ceva</h1>  <h1>Informa</h1> <!-- Título abaixo do logo -->
+    <nav>
+        <a href="temporada.html">Temporada</a>
+        <a href="index.html">Início</a>
+        <a href="jogadores.html">Jogadores</a>
+    </nav>
     <div class="container">
-        <div class="loader"></div> <!-- Roda girando -->
-        <img src="assets/image/logo/SO CEVA.png" alt="Logo Só Ceva" class="logo"> <!-- Substitua URL_DO_SEU_LOGO pelo link da sua imagem -->
-        <h1>Só Ceva APP</h1>
         <p>Bem-vindo ao nosso app! Aqui você encontra todas as informações necessárias sobre sua funcionalidade e uso.</p>
         <p><strong>Versão:</strong> 1.0.0</p>
         <p><strong>Desenvolvedor:</strong> Pelego Bruno</p>
@@ -107,35 +123,159 @@
             <li>Marcação de jogos e eventos da equipe</li>
             <li>Informações sobre temporadas e campeonatos</li>
             <li>Gerenciamento de escalações e estatísticas dos jogadores</li>
-    </div>
+        </ul>
 
-    
-<button id="installBtn" style="display: none;">📲 Baixar App</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <h2>Estatuto SO CEVA</h2>
+<iframe src="https://drive.google.com/file/d/124uOFNi9R-GsB3lEzyWg6ByPdkyq1MFU/preview" allowfullscreen></iframe>
+
+<!-- Botão para iniciar a assinatura -->
+<button id="mostrarAssinaturaBtn">✍️ Assinar Estatuto</button>
+
+<!-- Área única para assinar -->
+<div id="assinaturaContainer" style="display: none; margin-top: 20px;">
+    <h3>Assine aqui</h3>
+    <canvas id="assinaturaCanvas" width="300" height="150" style="border:1px solid #000;"></canvas>
+    <br>
+    <button id="limparAssinaturaBtn">🗑 Limpar</button>
+    <button id="salvarAssinaturaBtn">💾 Salvar</button>
+</div>
+
+<!-- Container onde as assinaturas salvas serão exibidas -->
+<h3>Assinaturas Salvas:</h3>
+<div id="assinaturasSalvasContainer"></div>
 
 <script>
-  let deferredPrompt;
+    const mostrarAssinaturaBtn = document.getElementById("mostrarAssinaturaBtn");
+    const assinaturaContainer = document.getElementById("assinaturaContainer");
+    const assinaturaCanvas = document.getElementById("assinaturaCanvas");
+    const limparAssinaturaBtn = document.getElementById("limparAssinaturaBtn");
+    const salvarAssinaturaBtn = document.getElementById("salvarAssinaturaBtn");
+    const assinaturasSalvasContainer = document.getElementById("assinaturasSalvasContainer");
+    const ctx = assinaturaCanvas.getContext("2d");
 
-  window.addEventListener("beforeinstallprompt", (event) => {
-    event.preventDefault();
-    deferredPrompt = event;
-    document.getElementById("installBtn").style.display = "block";
-  });
+    let desenhando = false;
+    let assinaturas = JSON.parse(localStorage.getItem("assinaturas")) || [];
 
-  document.getElementById("installBtn").addEventListener("click", () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === "accepted") {
-          console.log("Usuário aceitou instalar o PWA");
-        } else {
-          console.log("Usuário recusou instalar o PWA");
-        }
-        deferredPrompt = null;
-        document.getElementById("installBtn").style.display = "none";
-      });
+    // Mostrar a área de assinatura
+    mostrarAssinaturaBtn.addEventListener("click", () => {
+        assinaturaContainer.style.display = "block";
+        mostrarAssinaturaBtn.style.display = "none";
+    });
+
+    // Evento para desenhar no canvas
+    assinaturaCanvas.addEventListener("mousedown", () => desenhando = true);
+    assinaturaCanvas.addEventListener("mouseup", () => {
+        desenhando = false;
+        ctx.beginPath();
+    });
+    assinaturaCanvas.addEventListener("mousemove", (event) => {
+        if (!desenhando) return;
+        ctx.lineWidth = 2;
+        ctx.lineCap = "round";
+        ctx.strokeStyle = "#000";
+        ctx.lineTo(event.offsetX, event.offsetY);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(event.offsetX, event.offsetY);
+    });
+
+    // Limpar a assinatura
+    limparAssinaturaBtn.addEventListener("click", () => {
+        ctx.clearRect(0, 0, assinaturaCanvas.width, assinaturaCanvas.height);
+    });
+
+    // Salvar assinatura e exibir
+    salvarAssinaturaBtn.addEventListener("click", () => {
+        const imagem = assinaturaCanvas.toDataURL("image/png");
+        assinaturas.push(imagem);
+        localStorage.setItem("assinaturas", JSON.stringify(assinaturas));
+        exibirAssinaturas();
+        ctx.clearRect(0, 0, assinaturaCanvas.width, assinaturaCanvas.height);
+    });
+
+    // Exibir as assinaturas salvas
+    function exibirAssinaturas() {
+        assinaturasSalvasContainer.innerHTML = "";
+        assinaturas.forEach((assinatura, index) => {
+            const assinaturaDiv = document.createElement("div");
+            assinaturaDiv.style.position = "relative";
+            assinaturaDiv.style.display = "inline-block";
+            assinaturaDiv.style.margin = "10px";
+
+            const img = document.createElement("img");
+            img.src = assinatura;
+            img.style.border = "1px solid #000";
+            img.style.maxWidth = "100px";
+            img.style.cursor = "pointer";
+
+            img.addEventListener("click", () => abrirMenuExcluir(index));
+
+            assinaturaDiv.appendChild(img);
+            assinaturasSalvasContainer.appendChild(assinaturaDiv);
+        });
     }
-  });
+
+    // Abrir menu para excluir assinatura
+    function abrirMenuExcluir(index) {
+        if (confirm("Deseja excluir esta assinatura?")) {
+            assinaturas.splice(index, 1);
+            localStorage.setItem("assinaturas", JSON.stringify(assinaturas));
+            exibirAssinaturas();
+        }
+    }
+
+    // Carregar assinaturas ao abrir a página
+    exibirAssinaturas();
 </script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <a href="#" class="button" onclick="showMessage()">📲 Baixar App</a> <!-- Botão escondido -->
+    </div>
 </body>
 </html>
