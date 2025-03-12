@@ -3,90 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Só Ceva - Início</title>
-    <link rel="stylesheet" href="styles/inicio.css">
-    <link rel="manifest" href="/soceva/manifest.json">
+    <title>Informações</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/soceva/manifest.json"> <!-- Link para manifest.json -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 5px;
+            background: linear-gradient(to bottom, #fff 10%, #ffeb3b 100%);
+            text-align: center;
+            position: relative;
+        }
+        .container {
+            max-width: 700px;
+            margin: 90px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        .foam {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            width: 100px;
+            height: 40px;
+            background: white;
+            border-radius: 50% 50% 0 0;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            transform: translateX(-50%);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+            text-align: justify;
+        }
+        ul {
+            text-align: left;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .logo {
+            width: auto;
+            height: 80px;
+            max-width: 100%;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .loader {
+            position: absolute;
+            top: 9%;
+            left: 49.1%;
+            width: 80px;
+            height: 80px;
+            border: 6px solid rgba(234, 255, 42, 0.986);
+            border-top: 4px solid #070707;
+            border-radius: 60%;
+            animation: spin 1s linear infinite;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <header>
-            <img src="assets/image/logo/SO CEVA.png" alt="Logo Só Ceva" width="180" height="auto">
-            <h1>Bem-vindo ao Só Ceva</h1>
-            <h3>Temporada 2025</h3>
-            <div class="patrocinadores">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmvTGQvi3_Sb_4ZYXZahsOxkYniFMo7wxtvA&s" alt="viwatec" width="20" height="100">
-                <img src="https://online.fliphtml5.com/ktra/xeso/files/page/1.jpg?20200612093654&20200612093654" alt="exportação boteco" width="20" height="100">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCUlPoXtk4UTD5b4auMqqr89hBc9UPotzMhg&s" alt="kr santos personalizados" width="20" height="50">
-                <img src="assets/image/logo/TEK.png" alt="TEK ServiceRS" width="70" height="70">
-                <!-- Adicione mais logos conforme necessário -->
-            </div>
-        </header>
-        <hr class="linha-estilizada">
-    </header>
-    <nav>
-        <div class="menu-toggle" onclick="toggleMenu()">
-            &#9776; <!-- Ícone de traço (hambúrguer) -->
-        </div>
-        <ul class="menu" id="menu">
-            <li><a href="jogadores.html">Jogadores</a></li> <!-- Link para a página de jogadores -->
-            <li><a href="temporada.html">Temporada</a></li> <!-- Link para a página de temporada -->
+    <div class="foam"></div>
+    <div class="container">
+        <div class="loader"></div>
+        <img src="assets/image/logo/SO CEVA.png" alt="Logo Só Ceva" class="logo">
+        <h1>Só Ceva APP</h1>
+        <p>Bem-vindo ao nosso app! Aqui você encontra todas as informações necessárias sobre sua funcionalidade e uso.</p>
+        <p><strong>Versão:</strong> 1.0.0</p>
+        <p><strong>Desenvolvedor:</strong> Pelego Bruno</p>
+        <p><strong>Contato:</strong> contato@socevaapp.com</p>
+        <h2>Recursos do Aplicativo:</h2>
+        <ul>
+            <li>Marcação de jogos e eventos da equipe</li>
+            <li>Informações sobre temporadas e campeonatos</li>
+            <li>Gerenciamento de escalações e estatísticas dos jogadores</li>
         </ul>
-    </nav>
-    
-    <main id="inicio-container">
-        <h2>Início</h2>
-        <section class="dashboard">
-            <h3>Dashboard de Desempenho</h3>
-            <div class="dashboard-container">
-                <div class="metric">
-                    <h4>Vitórias</h4>
-                    <p id="vitorias-inicio">0</p>
-                </div>
-                <div class="metric">
-                    <h4>Derrotas</h4>
-                    <p id="derrotas-inicio">0</p>
-                </div>
-                <div class="metric">
-                    <h4>Empates</h4>
-                    <p id="empates-inicio">0</p>
-                </div>
-                <div class="metric">
-                    <h4>Gols</h4>
-                    <p id="gols-feitos-inicio">0</p>
-                </div>
-            </div>
-        </section>
-        <section class="goleadores">
-            <h3>Goleadores da Temporada</h3>
-            <table id="tabela-goleadores-inicio">
-                <thead>
-                    <tr>
-                        <th>Jogador</th>
-                        <th>Gols</th>
-                    </tr>
-                </thead>
-                <tbody id="goleadores-lista-inicio">
-                    <!-- A lista de goleadores será gerada aqui -->
-                </tbody>
-            </table>
-        </section>
-    </main>
+    </div>
 
-<script src="scripts/script.js"></script>
-<script src="scripts/automação.js"></script>
+    <button id="installBtn" style="display: none;">📲 Baixar App</button>
 
+    <script>
+        let deferredPrompt;
+        window.addEventListener("beforeinstallprompt", (event) => {
+            event.preventDefault();
+            deferredPrompt = event;
+            document.getElementById("installBtn").style.display = "block";
+        });
 
-<script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js")
-        .then(() => console.log("Service Worker registrado com sucesso!"))
-        .catch(error => console.log("Erro ao registrar Service Worker:", error));
-    }
-  </script>
-  
-
-
-
-
+        document.getElementById("installBtn").addEventListener("click", () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === "accepted") {
+                        console.log("Usuário aceitou instalar o PWA");
+                    } else {
+                        console.log("Usuário recusou instalar o PWA");
+                    }
+                    deferredPrompt = null;
+                    document.getElementById("installBtn").style.display = "none";
+                });
+            }
+        });
+    </script>
 </body>
 </html>
