@@ -241,4 +241,3 @@ document.getElementById("installBtn").addEventListener("click", () => {
         deferredPrompt = null;
     });
 });
-
