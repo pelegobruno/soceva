@@ -8,179 +8,294 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f3f4f6;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-direction: column;
-            min-height: 100vh;
         }
+
         nav {
-            width: 100%;
-            background-color: #007bff;
+            background-color: #007BFF;
+            padding: 15px;
             color: white;
-            padding: 10px 0;
-            z-index: 1000;
+            text-align: center;
             position: relative;
         }
-        .menu-toggle {
-            display: none;
+
+        .burger {
+            position: relative;
+            width: 40px;
+            height: 30px;
             cursor: pointer;
-            font-size: 24px;
-            padding: 0 15px;
+            display: inline-block;
+            margin: 0 auto;
         }
+
+        .burger input {
+            display: none;
+        }
+
+        .burger span {
+            display: block;
+            position: absolute;
+            height: 4px;
+            width: 100%;
+            background: white;
+            border-radius: 9px;
+            transition: .25s ease-in-out;
+        }
+
+        .burger span:nth-of-type(1) {
+            top: 0px;
+        }
+
+        .burger span:nth-of-type(2) {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .burger span:nth-of-type(3) {
+            top: 100%;
+            transform: translateY(-100%);
+        }
+
+        .burger input:checked ~ span:nth-of-type(1) {
+            transform: rotate(45deg);
+            top: 0px;
+        }
+
+        .burger input:checked ~ span:nth-of-type(2) {
+            width: 0%;
+            opacity: 0;
+        }
+
+        .burger input:checked ~ span:nth-of-type(3) {
+            transform: rotate(-45deg);
+            top: 28px;
+        }
+
         .menu {
             list-style: none;
             padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            background: #007BFF;
+            z-index: 10;
         }
+
         .menu li {
-            margin: 0 15px;
+            text-align: center;
+            border-bottom: 1px solid white;
         }
+
         .menu a {
             color: white;
             text-decoration: none;
-            font-size: 18px;
+            padding: 15px 0;
+            display: block;
+            transition: background-color 0.3s;
         }
+
         .menu a:hover {
-            text-decoration: underline;
+            background-color: #0056b3;
         }
-        @media (max-width: 768px) {
-            .menu {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 50px;
-                left: 0;
-                width: 100%;
-                background-color: #007bff;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            .menu.active {
-                display: flex;
-            }
+
+        .burger input:checked ~ .menu {
+            display: flex;
         }
+
         .container {
-            width: 90%;
-            max-width: 500px;
-            padding: 20px;
+            max-width: 600px;
+            margin: 20px auto;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-            transition: box-shadow 0.3s;
-            animation: fadeIn 0.5s ease;
-            margin-top: 60px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+
         h1 {
-            font-size: 28px;
             text-align: center;
             color: #333;
             margin-bottom: 20px;
         }
+
         .saldo {
-            font-size: 24px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #28a745;
             text-align: center;
             margin: 20px 0;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #e0f7fa;
-            color: #00796b;
+            border-bottom: 2px solid #28a745;
+            padding-bottom: 10px;
+        }
+
+        .filter-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .filter-container input,
+        .filter-container button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+
+        .filter-container button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
             transition: background-color 0.3s;
         }
-        .saldo:hover {
-            background-color: #b2ebf2;
+
+        .filter-container button:hover {
+            background-color: #0056b3;
         }
-        .entrada {
-            color: #388e3c; /* Verde para entradas */
+
+        #lancamentos-container {
+            margin: 20px 0;
         }
-        .saida {
-            color: #d32f2f; /* Vermelho para saídas */
-        }
+
         .lancamento {
-            margin: 10px 0;
-            padding: 15px;
+            background: #f9f9f9;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-            transition: background-color 0.3s, transform 0.3s;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .lancamento:hover {
-            background-color: #f1f1f1;
-            transform: scale(1.01);
+
+        .lancamento.entrada {
+            border-left: 5px solid #28a745;
         }
+
+        .lancamento.saida {
+            border-left: 5px solid #dc3545;
+        }
+
+        .lancamento strong {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .lancamento small {
+            display: block;
+            font-size: 12px;
+            color: #777;
+        }
+
         form {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
-        input, select {
-            padding: 12px;
+
+        form input,
+        form select,
+        form button {
+            padding: 10px;
+            margin: 5px 0;
             border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
+            border-radius: 5px;
         }
-        input:focus, select:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-        button {
-            padding: 12px;
-            background-color: #007bff;
+
+        form button {
+            background-color: #007BFF;
             color: white;
             border: none;
-            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background-color 0.3s;
         }
-        button:hover {
+
+        form button:hover {
             background-color: #0056b3;
-            transform: scale(1.02);
         }
-        .filter-container {
-            margin-bottom: 20px;
+
+        .extrato {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .extrato table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .extrato th, .extrato td {
+            padding: 10px;
+            text-align: right;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .extrato th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .extrato .descricao {
+            text-align: left;
+        }
+
+        .extrato .entrada {
+            color: #28a745;
+        }
+
+        .extrato .saida {
+            color: #dc3545;
         }
     </style>
 </head>
 <body>
     <nav>
-        <div class="menu-toggle" onclick="toggleMenu()">
-            &#9776; <!-- Ícone de traço (hambúrguer) -->
-        </div>
+        <label class="burger" for="burger">
+            <input type="checkbox" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
         <ul class="menu" id="menu">
-            <li><a href="index.html">Início</a></li>
             <li><a href="jogadores.html">Jogadores</a></li>
+            <li><a href="temporada.html">Temporada</a></li>
             <li><a href="info.html">Informativo</a></li>
-            <a href="temporada.html">Temporada</a>
         </ul>
     </nav>
 
     <div class="container">
         <h1>Controle Financeiro - So Ceva</h1>
-        <div class="saldo" id="saldo">Saldo: R$ 0,00</div>
-        
-        <!-- Filtros de Busca -->
+        <div class="saldo" id="saldo">Saldo: Carregando...</div>
+
         <div class="filter-container">
-            <input type="text" id="letra" placeholder="Buscar por letra...">
+            <input type="text" id="letra" placeholder="Buscar por descrição...">
             <input type="date" id="dataInicio" placeholder="Data Início">
             <input type="date" id="dataFim" placeholder="Data Fim">
             <button id="btnBuscar" onclick="filtrarLancamentos()">Buscar</button>
         </div>
 
-        <div id="lancamentos-container"></div>
+        <div class="extrato">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Histórico</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody id="lancamentos-container">
+                    <!-- Lançamentos serão adicionados aqui -->
+                </tbody>
+            </table>
+        </div>
+
         <form id="form-lancamento">
             <input type="text" id="descricao" placeholder="Descrição" required>
             <input type="number" id="valor" placeholder="Valor" required>
@@ -192,77 +307,99 @@
         </form>
     </div>
 
-    <script>
-        // Função para alternar o menu
-        function toggleMenu() {
-            const menu = document.getElementById("menu");
-            menu.classList.toggle("active");
-        }
-
-        // Carrega lançamentos do localStorage
-        const lancamentos = JSON.parse(localStorage.getItem("lancamentos")) || [];
-
-        // Função para atualizar a exibição de lançamentos e saldo
-        function atualizarExibicao(dataFiltrada = lancamentos) {
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, query, where, orderBy } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+    
+        const firebaseConfig = {
+          apiKey: "YOUR_API_KEY",
+          authDomain: "YOUR_AUTH_DOMAIN",
+          projectId: "financeiro-so-ceva",
+          storageBucket: "YOUR_STORAGE_BUCKET",
+          messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+          appId: "YOUR_APP_ID",
+          measurementId: "YOUR_MEASUREMENT_ID"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const lancamentosCollection = collection(db, "lancamentos");
+    
+        async function atualizarExibicao(dataFiltrada) {
             const container = document.getElementById("lancamentos-container");
             container.innerHTML = "";
             let saldo = 0;
-
+    
             dataFiltrada.forEach(lancamento => {
-                const div = document.createElement("div");
-                div.className = `lancamento ${lancamento.tipo}`;
-                div.innerHTML = `<strong>${lancamento.descricao}</strong>: R$ ${lancamento.valor.toFixed(2)} <br><small>${new Date(lancamento.data).toLocaleString()}</small>`;
-                container.appendChild(div);
-
-                saldo += lancamento.tipo === "entrada" ? lancamento.valor : -lancamento.valor; // Calcula saldo
+                const tr = document.createElement("tr");
+                tr.className = lancamento.tipo;
+                const dataFormatada = new Date(lancamento.data.seconds * 1000).toLocaleDateString(); // Formata a data
+                tr.innerHTML = `
+                    <td>${dataFormatada}</td>
+                    <td class="descricao">${lancamento.descricao}</td>
+                    <td class="${lancamento.tipo}">R$ ${lancamento.valor.toFixed(2)}</td>
+                `;
+                container.appendChild(tr);
+    
+                saldo += lancamento.tipo === "entrada" ? lancamento.valor : -lancamento.valor;
             });
-
-            document.getElementById("saldo").innerText = `Saldo: R$ ${saldo.toFixed(2)}`; // Atualiza o saldo
+    
+            document.getElementById("saldo").innerText = `Saldo: R$ ${saldo.toFixed(2)}`;
         }
-
-        // Função para filtrar lançamentos
-        function filtrarLancamentos() {
+    
+        async function carregarLancamentos() {
+            const q = query(lancamentosCollection, orderBy("data"));
+            const querySnapshot = await getDocs(q);
+            const lancamentosFirestore = querySnapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            atualizarExibicao(lancamentosFirestore);
+        }
+    
+        async function filtrarLancamentos() {
             const letra = document.getElementById("letra").value.toLowerCase();
-            const dataInicio = new Date(document.getElementById("dataInicio").value);
-            const dataFim = new Date(document.getElementById("dataFim").value);
-            const lancamentosFiltrados = lancamentos.filter(lancamento => {
-                const dataLancamento = new Date(lancamento.data);
-                const condicaoLetra = letra === "" || lancamento.descricao.toLowerCase().includes(letra);
-                const condicaoData = (isNaN(dataInicio) || dataLancamento >= dataInicio) && (isNaN(dataFim) || dataLancamento <= dataFim);
-                return condicaoLetra && condicaoData;
-            });
+            const dataInicio = document.getElementById("dataInicio").value;
+            const dataFim = document.getElementById("dataFim").value;
+            let q = query(lancamentosCollection);
+    
+            if (letra) {
+                q = query(q, where("descricao", ">=", letra), where("descricao", "<=", letra + '\uf8ff'));
+            }
+            if (dataInicio) {
+                q = query(q, where("data", ">=", new Date(dataInicio)));
+            }
+            if (dataFim) {
+                q = query(q, where("data", "<=", new Date(dataFim)));
+            }
+    
+            const querySnapshot = await getDocs(q);
+            const lancamentosFiltrados = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             atualizarExibicao(lancamentosFiltrados);
         }
-
-        // Adiciona evento ao formulário
-        document.getElementById("form-lancamento").addEventListener("submit", (e) => {
-            e.preventDefault(); // Previne o comportamento padrão do formulário
-
-            const descricao = document.getElementById("descricao").value;
-            const valor = parseFloat(document.getElementById("valor").value);
-            const tipo = document.getElementById("tipo").value;
-
-            // Adiciona novo lançamento ao array
-            lancamentos.push({
+    
+        async function adicionarLancamento(descricao, valor, tipo) {
+            await addDoc(lancamentosCollection, {
                 descricao,
                 valor,
                 data: new Date(),
                 tipo
             });
-
-            // Armazena lançamentos no localStorage
-            localStorage.setItem("lancamentos", JSON.stringify(lancamentos));
-
-            // Limpa os campos do formulário
+            carregarLancamentos();
+        }
+    
+        document.getElementById("form-lancamento").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const descricao = document.getElementById("descricao").value;
+            const valor = parseFloat(document.getElementById("valor").value);
+            const tipo = document.getElementById("tipo").value;
+            adicionarLancamento(descricao, valor, tipo);
             document.getElementById("descricao").value = '';
             document.getElementById("valor").value = '';
-            document.getElementById("tipo").value = 'entrada'; // Reseta para o padrão
-
-            atualizarExibicao(); // Atualiza a exibição
+            document.getElementById("tipo").value = 'entrada';
         });
-
-        // Atualiza a exibição ao carregar a página
-        atualizarExibicao();
+    
+        carregarLancamentos();
     </script>
 </body>
 </html>
