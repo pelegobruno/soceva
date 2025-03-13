@@ -13,8 +13,58 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            align-items: flex-start;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        nav {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            z-index: 1000;
+            position: relative;
+        }
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 0 15px;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .menu li {
+            margin: 0 15px;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .menu a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 50px;
+                left: 0;
+                width: 100%;
+                background-color: #007bff;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .menu.active {
+                display: flex;
+            }
         }
         .container {
             width: 90%;
@@ -25,6 +75,7 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
             transition: box-shadow 0.3s;
             animation: fadeIn 0.5s ease;
+            margin-top: 60px;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
@@ -105,6 +156,17 @@
     </style>
 </head>
 <body>
+    <nav>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            &#9776; <!-- Ícone de traço (hambúrguer) -->
+        </div>
+        <ul class="menu" id="menu">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="jogadores.html">Jogadores</a></li>
+            <li><a href="info.html">Informativo</a></li>
+        </ul>
+    </nav>
+
     <div class="container">
         <h1>Controle Financeiro - So Ceva</h1>
         <div class="saldo" id="saldo">Saldo: R$ 0,00</div>
@@ -116,7 +178,7 @@
             <input type="date" id="dataFim" placeholder="Data Fim">
             <button id="btnBuscar" onclick="filtrarLancamentos()">Buscar</button>
         </div>
-        
+
         <div id="lancamentos-container"></div>
         <form id="form-lancamento">
             <input type="text" id="descricao" placeholder="Descrição" required>
@@ -130,6 +192,12 @@
     </div>
 
     <script>
+        // Função para alternar o menu
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.classList.toggle("active");
+        }
+
         // Carrega lançamentos do localStorage
         const lancamentos = JSON.parse(localStorage.getItem("lancamentos")) || [];
 
@@ -158,8 +226,8 @@
             const dataFim = new Date(document.getElementById("dataFim").value);
             const lancamentosFiltrados = lancamentos.filter(lancamento => {
                 const dataLancamento = new Date(lancamento.data);
-                const condicaoLetra = letra === "" || lancamento.descricao.toLowerCase().startsWith(letra);
-                const condicaoData = (!dataInicio || dataLancamento >= dataInicio) && (!dataFim || dataLancamento <= dataFim);
+                const condicaoLetra = letra === "" || lancamento.descricao.toLowerCase().includes(letra);
+                const condicaoData = (isNaN(dataInicio) || dataLancamento >= dataInicio) && (isNaN(dataFim) || dataLancamento <= dataFim);
                 return condicaoLetra && condicaoData;
             });
             atualizarExibicao(lancamentosFiltrados);

@@ -3,267 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle Financeiro - So Ceva</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f3f4f6;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Alterado para flex-start */
-            flex-direction: column;
-            min-height: 100vh; /* Garante que o corpo ocupe toda a altura da tela */
-        }
-        nav {
-            width: 100%;
-            background-color: #007bff;
-            color: white;
-            padding: 10px 0;
-            position: fixed; /* Fixar no topo */
-            top: 0;
-            left: 0;
-            z-index: 1000; /* Colocar na frente do conteúdo */
-        }
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 24px;
-            padding: 0 15px;
-        }
-        .menu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-        .menu li {
-            margin: 0 15px;
-        }
-        .menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-        }
-        .menu a:hover {
-            text-decoration: underline;
-        }
-        @media (max-width: 768px) {
-            .menu {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 50px;
-                left: 0;
-                width: 100%;
-                background-color: #007bff;
-            }
-            .menu-toggle {
-                display: block;
-            }
-            .menu.active {
-                display: flex;
-            }
-        }
-        .container {
-            width: 90%;
-            max-width: 500px;
-            padding: 20px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-            transition: box-shadow 0.3s;
-            animation: fadeIn 0.5s ease;
-            margin-top: 70px; /* Margem para não ficar escondido atrás da navbar */
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        h1 {
-            font-size: 28px;
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .saldo {
-            font-size: 24px;
-            text-align: center;
-            margin: 20px 0;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #e0f7fa;
-            color: #00796b;
-            transition: background-color 0.3s;
-        }
-        .saldo:hover {
-            background-color: #b2ebf2;
-        }
-        .entrada {
-            color: #388e3c; /* Verde para entradas */
-        }
-        .saida {
-            color: #d32f2f; /* Vermelho para saídas */
-        }
-        .lancamento {
-            margin: 10px 0;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        .lancamento:hover {
-            background-color: #f1f1f1;
-            transform: scale(1.01);
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        input, select {
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-        input:focus, select:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-        button {
-            padding: 12px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        button:hover {
-            background-color: #0056b3;
-            transform: scale(1.02);
-        }
-        .filter-container {
-            margin-bottom: 20px;
-        }
-    </style>
+    <title>Temporada 2025 - Só Ceva</title>
+    <link rel="stylesheet" href="styles/temporada.css">
 </head>
 <body>
+    <header>
+        <img src="assets/image/logo/SO CEVA.png" alt="Logo Só Ceva" width="180" height="auto">
+        <h3>Temporada</h3>
+        <hr class="linha-estilizada">
+        <br><br><br><br>
+    </header>
     <nav>
         <div class="menu-toggle" onclick="toggleMenu()">
             &#9776; <!-- Ícone de traço (hambúrguer) -->
         </div>
         <ul class="menu" id="menu">
-            <li><a href="index.html">Início</a></li>
-            <li><a href="jogadores.html">Jogadores</a></li>
-            <li><a href="info.html">Informativo</a></li>
+            <li><a href="index.html">Início</a></li> <!-- Link para a página inicial -->
+            <li><a href="jogadores.html">Jogadores</a></li> <!-- Link para a página de jogadores -->
+            <a href="info.html">Informativo</a>
+            <li><a href="financeiro.html">Financeiro</a></li>
         </ul>
     </nav>
 
-    <div class="container">
-        <h1>Controle Financeiro - So Ceva</h1>
-        <div class="saldo" id="saldo">Saldo: R$ 0,00</div>
-        
-        <!-- Filtros de Busca -->
-        <div class="filter-container">
-            <input type="text" id="letra" placeholder="Buscar por letra...">
-            <input type="date" id="dataInicio" placeholder="Data Início">
-            <input type="date" id="dataFim" placeholder="Data Fim">
-            <button id="btnBuscar" onclick="filtrarLancamentos()">Buscar</button>
-        </div>
-
-        <div id="lancamentos-container"></div>
-        <form id="form-lancamento">
-            <input type="text" id="descricao" placeholder="Descrição" required>
-            <input type="number" id="valor" placeholder="Valor" required>
-            <select id="tipo">
-                <option value="entrada">Entrada</option>
-                <option value="saida">Saída</option>
-            </select>
-            <button type="submit">Adicionar Lançamento</button>
-        </form>
+    <section class="goleadores">
+        <h3>Jogos</h3>
+        <table id="tabela-jogadores">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Jogo</th>
+                    <th>Local</th>
+                    <th>Gols Marcados</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Data">15/03/2025</td>
+                    <td data-label="Hora">20:00</td>
+                    <td data-label="Jogo">Só Ceva <strong>x</strong> Boston</td>
+                    <td data-label="Local">G7<br>R. das Espatódeas, 380 - Ponta Grossa</td>
+                    <td data-label="Gols">
+                        <ul>
+                            <li>Em breve...</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td data-label="Data">07/03/2025</td>
+                    <td data-label="Hora">21:00</td>
+                    <td data-label="Jogo">Só Ceva <strong>5 x 6</strong> Parma</td>
+                    <td data-label="Local">Sulsete Cavalhada, Porto Alegre</td>
+                    <td data-label="Gols">
+                        <ul>
+                            <li>Drinho - 2 gols</li>
+                            <li>Lucca - 2 gols</li>
+                            <li>Duka - 1 gol</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+    </section>
+    <!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modal-jogo"></h2>
+        <p id="modal-data"></p>
+        <p id="modal-hora"></p>
+        <p id="modal-local"></p>
+        <p id="modal-gols"></p>
     </div>
+</div>
 
-    <script>
-        // Função para alternar o menu
-        function toggleMenu() {
-            const menu = document.getElementById("menu");
-            menu.classList.toggle("active");
-        }
-
-        // Carrega lançamentos do localStorage
-        const lancamentos = JSON.parse(localStorage.getItem("lancamentos")) || [];
-
-        // Função para atualizar a exibição de lançamentos e saldo
-        function atualizarExibicao(dataFiltrada = lancamentos) {
-            const container = document.getElementById("lancamentos-container");
-            container.innerHTML = "";
-            let saldo = 0;
-
-            dataFiltrada.forEach(lancamento => {
-                const div = document.createElement("div");
-                div.className = `lancamento ${lancamento.tipo}`;
-                div.innerHTML = `<strong>${lancamento.descricao}</strong>: R$ ${lancamento.valor.toFixed(2)} <br><small>${new Date(lancamento.data).toLocaleString()}</small>`;
-                container.appendChild(div);
-
-                saldo += lancamento.tipo === "entrada" ? lancamento.valor : -lancamento.valor; // Calcula saldo
-            });
-
-            document.getElementById("saldo").innerText = `Saldo: R$ ${saldo.toFixed(2)}`; // Atualiza o saldo
-        }
-
-        // Função para filtrar lançamentos
-        function filtrarLancamentos() {
-            const letra = document.getElementById("letra").value.toLowerCase();
-            const dataInicio = new Date(document.getElementById("dataInicio").value);
-            const dataFim = new Date(document.getElementById("dataFim").value);
-            const lancamentosFiltrados = lancamentos.filter(lancamento => {
-                const dataLancamento = new Date(lancamento.data);
-                const condicaoLetra = letra === "" || lancamento.descricao.toLowerCase().startsWith(letra);
-                const condicaoData = (!dataInicio || dataLancamento >= dataInicio) && (!dataFim || dataLancamento <= dataFim);
-                return condicaoLetra && condicaoData;
-            });
-            atualizarExibicao(lancamentosFiltrados);
-        }
-
-        // Adiciona evento ao formulário
-        document.getElementById("form-lancamento").addEventListener("submit", (e) => {
-            e.preventDefault(); // Previne o comportamento padrão do formulário
-
-            const descricao = document.getElementById("descricao").value;
-            const valor = parseFloat(document.getElementById("valor").value);
-            const tipo = document.getElementById("tipo").value;
-
-            // Adiciona novo lançamento ao array
-            lancamentos.push({
-                descricao,
-                valor,
-                data: new Date(),
-                tipo
-            });
-
-            // Armazena lançamentos no localStorage
-            localStorage.setItem("lancamentos", JSON.stringify(lancamentos));
-
-            // Limpa os campos do formulário
-            document.getElementById("descricao").value = '';
-            document.getElementById("valor").value = '';
-            document.getElementById("tipo").value = 'entrada'; // Reseta para o padrão
-
-            atualizarExibicao(); // Atualiza a exibição
-        });
-
-        // Atualiza a exibição ao carregar a página
-        atualizarExibicao();
-    </script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/automação.js"></script>
 </body>
 </html>
