@@ -1,0 +1,200 @@
+/**********CORPO + H3 E FONTS**********/
+body {
+    background-image: url('https://img.freepik.com/vetores-gratis/fundo-gradiente-do-campo-de-futebol_23-2149000103.jpg'); /* URL da imagem do campo de futebol */
+    background-size: cover; /* Faz a imagem cobrir todo o fundo */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Não repete a imagem */
+    margin: 0;
+    padding: 5px;
+    text-align: center;
+    color: rgb(236, 38, 81); /* Ajusta a cor do texto para melhor visibilidade */
+    font-family: Arial, sans-serif; /* Mantém a fonte padrão para o corpo */
+}
+
+h3 {
+    font-family: 'tipografiaRealMadrid', sans-serif; /* Aplica a fonte somente ao h3 */
+}
+
+
+@font-face {
+    font-family: 'TipografiaRealMadrid';
+    src: url('../assets/fonts/TIPOGRAFIA-REAL-MADRID/RealMadrid2024_SportsFonts.otf') format('opentype');
+}
+
+/**********MENU / ABAS**********/
+nav {
+    position: absolute; /* Posiciona o nav em relação ao corpo */
+    top: 117px; /* Distância do topo */
+    left: 40px; /* Distância da esquerda */
+}
+
+.menu-toggle {
+    font-size: 35px; /* Tamanho do ícone de traço */
+    cursor: pointer; /* Mão ao passar o mouse */
+    color: rgb(236, 38, 81); /* Cor do ícone */
+}
+
+.menu {
+    list-style-type: none; /* Remove os marcadores da lista */
+    padding: 0; /* Remove o preenchimento padrão */
+    margin: 0; /* Remove a margem padrão */
+    display: none; /* Oculta o menu por padrão */
+    flex-direction: column; /* Alinha os itens em coluna */
+    background-color: white; /* Fundo do menu */
+    border: 1px solid rgb(236, 38, 81); /* Bordas do menu */
+    position: absolute; /* Posiciona o menu em relação ao nav */
+    top: 40px; /* Distância do topo em relação ao botão */
+    left: 0; /* Alinha à esquerda */
+    z-index: 1000; /* Garante que o menu esteja acima de outros elementos */
+}
+
+.menu.active {
+    display: flex; /* Mostra o menu quando ativo */
+}
+
+.menu li {
+    margin: 5px 0; /* Espaçamento entre os itens */
+}
+
+.menu a {
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: rgb(236, 38, 81); /* Cor do texto dos links */
+    border-bottom: 1px dashed rgb(236, 38, 81); /* Linha pontilhada abaixo do link */
+    padding: 5px 0; /* Espaçamento interno */
+}
+
+.menu a:hover {
+    color: white; /* Mudança de cor ao passar o mouse */
+    background-color: rgba(236, 38, 81, 0.3); /* Fundo ao passar o mouse */
+}
+
+/* Estilo da linha estilizada */
+.linha-estilizada {
+    border: none; /* Remove a borda padrão */
+    height: 4px; /* Altura da linha */
+    background: linear-gradient(to right, #007bff, #6610f2); /* Gradiente de cor */
+    width: 60%; /* Largura da linha */
+    margin: 10px auto; /* Centraliza a linha e adiciona margem acima e abaixo */
+    border-radius: 5px; /* Arredonda as bordas da linha */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra */
+}
+
+#cartas-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* cartas jogadores*/
+.carta {
+    background-image: url('https://futcardsfifa.com/app/uploads/2022/04/RARE-GOLD-FC24style2023.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    width: 56px;
+    height: 100px;
+    padding: 15px;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.posicao {
+    position: absolute; /* Posicionamento absoluto */
+    top: 35px; /* Distância do topo */
+    left: 29%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Ajusta a posição para o centro */
+    font-size: 6px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    color: black; /* Cor do número */
+    font-family: 'TipografiaRealMadrid', sans-serif; /* Usando a nova fonte */
+    text-align: center; /* Centraliza o texto */
+    z-index: 10; /* Garante que o número fique acima da imagem */
+}
+
+.numero {
+    position: absolute; /* Posicionamento absoluto */
+    top: 45px; /* Distância do topo */
+    left: 28%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Ajusta a posição para o centro */
+    font-size: 6px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    color: black; /* Cor do número */
+    font-family: 'TipografiaRealMadrid', sans-serif; /* Usando a nova fonte */
+    text-align: center; /* Centraliza o texto */
+    z-index: 10; /* Garante que o número fique acima da imagem */
+}
+
+.imagem-jogador {
+    width: 48px; /* Largura fixa */
+    height: 46px; /* Altura fixa */
+    border-radius: 11px;
+    margin-top: 6px;
+    margin-left: 23px; /* Ajusta a margem à esquerda para mover a imagem para a direita */
+    object-fit: cover; /* Faz com que a imagem cubra a área definida sem distorção */
+}
+
+.carta-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    background: rgba(0, 0, 0, 0.3); /* Fundo levemente escurecido */
+    padding: -1px 1px;
+    border-radius: 15px;
+    width: 95%;
+}
+
+.nome {
+    font-weight: bold;
+    font-family: 'TipografiaRealMadrid', sans-serif; /* Usando a nova fonte */
+    font-size: 6px;
+    color: white; /* Melhor contraste */
+    padding: 5px01px;
+    border-radius: 5px;
+    margin-right: 5px;
+    text-transform: uppercase; /* Deixa o nome em caixa alta */
+}
+
+.escudo {
+    width: 18px;
+    height: 10px;
+    border-radius: 10px;
+}
+
+.estatisticas {
+    position: absolute;
+    bottom: 22px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    width: 65%;
+    text-align: center;
+    font-size: 5px;
+}
+
+.estatisticas div {
+    padding: 0px;
+    border-radius: 5px;
+    color: #0f0f0f;
+    font-weight: bold;
+}
+
+/*******carta goleiro**********/
+.carta-goleiro {
+    background-image: url('https://futcardsfifa.com/app/uploads/2021/03/REAL-BETIS-WEB-min.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/*******carta treinador**********/
+.carta-treinador {
+    background-image: url('https://futcardsfifa.com/app/uploads/2020/10/FUTCARD-MADRIDISTA-T23-WEB-min.png');
+    background-size: cover;
+    background-position: center;
+    position: relative; /* Para permitir o posicionamento absoluto das estatísticas */
+}
+
+
