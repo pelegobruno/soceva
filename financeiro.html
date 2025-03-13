@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle Financeiro - So Ceva</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quantico&display=swap" rel="stylesheet"> <!-- Fonte financeira -->
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -18,93 +19,29 @@
             padding: 15px;
             color: white;
             text-align: center;
-            position: relative;
-        }
-
-        .burger {
-            position: relative;
-            width: 40px;
-            height: 30px;
-            cursor: pointer;
-            display: inline-block;
-            margin: 0 auto;
-        }
-
-        .burger input {
-            display: none;
-        }
-
-        .burger span {
-            display: block;
-            position: absolute;
-            height: 4px;
-            width: 100%;
-            background: white;
-            border-radius: 9px;
-            transition: .25s ease-in-out;
-        }
-
-        .burger span:nth-of-type(1) {
-            top: 0px;
-        }
-
-        .burger span:nth-of-type(2) {
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .burger span:nth-of-type(3) {
-            top: 100%;
-            transform: translateY(-100%);
-        }
-
-        .burger input:checked ~ span:nth-of-type(1) {
-            transform: rotate(45deg);
-            top: 0px;
-        }
-
-        .burger input:checked ~ span:nth-of-type(2) {
-            width: 0%;
-            opacity: 0;
-        }
-
-        .burger input:checked ~ span:nth-of-type(3) {
-            transform: rotate(-45deg);
-            top: 28px;
         }
 
         .menu {
             list-style: none;
             padding: 0;
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 50px;
-            left: 0;
-            width: 100%;
-            background: #007BFF;
-            z-index: 10;
+            display: flex;
+            justify-content: center;
         }
 
         .menu li {
-            text-align: center;
-            border-bottom: 1px solid white;
+            margin: 0 10px;
         }
 
         .menu a {
             color: white;
             text-decoration: none;
-            padding: 15px 0;
-            display: block;
+            padding: 10px 15px;
+            border-radius: 5px;
             transition: background-color 0.3s;
         }
 
         .menu a:hover {
             background-color: #0056b3;
-        }
-
-        .burger input:checked ~ .menu {
-            display: flex;
         }
 
         .container {
@@ -117,23 +54,43 @@
         }
 
         h1 {
+            font-family: 'Quantico', sans-serif;
+            font-size: 28px;
             text-align: center;
             color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+        }
+
+        .saldo-descricao {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .saldo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
         }
 
         .saldo {
-            font-size: 28px;
+            font-size: 32px; /* Tamanho maior */
             font-weight: bold;
             color: #28a745;
-            text-align: center;
-            margin: 20px 0;
-            border-bottom: 2px solid #28a745;
-            padding-bottom: 10px;
+            margin: 0; /* Sem margem */
+        }
+
+        .divider {
+            width: 100%;
+            height: 2px;
+            background-color: green; /* Cor do traço */
+            margin: 10px 0; /* Margem para espaçamento */
         }
 
         .filter-container {
-            display: flex;
+            display: none; /* Esconder inicialmente */
             flex-direction: column;
             margin-bottom: 20px;
         }
@@ -146,77 +103,26 @@
             margin: 5px 0;
         }
 
-        .filter-container button {
-            background-color: #007BFF;
-            color: white;
+        .filter-button {
+            margin: 0 auto; /* Centraliza o botão */
+            width: 80px; /* Largura do botão */
+            height: 80px; /* Altura do botão */
+            background-color: transparent; /* Fundo transparente */
             border: none;
             cursor: pointer;
             transition: background-color 0.3s;
-        }
-
-        .filter-container button:hover {
-            background-color: #0056b3;
-        }
-
-        #lancamentos-container {
-            margin: 20px 0;
-        }
-
-        .lancamento {
-            background: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 10px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: center;
+            border-radius: 50%; /* Bordas arredondadas */
+            background-image: url('https://w7.pngwing.com/pngs/527/359/png-transparent-beer-glasses-mug-beer-glass-food-text-thumbnail.png');
+            background-size: contain; /* Ajusta para caber completamente */
+            background-repeat: no-repeat; /* Não repete a imagem */
+            background-position: center; /* Centraliza a imagem */
         }
 
-        .lancamento.entrada {
-            border-left: 5px solid #28a745;
-        }
-
-        .lancamento.saida {
-            border-left: 5px solid #dc3545;
-        }
-
-        .lancamento strong {
-            font-size: 18px;
-            color: #333;
-        }
-
-        .lancamento small {
-            display: block;
-            font-size: 12px;
-            color: #777;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            margin-top: 20px;
-        }
-
-        form input,
-        form select,
-        form button {
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        form button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        form button:hover {
-            background-color: #0056b3;
+        .filter-button:hover {
+            background-color: rgba(255, 215, 0, 0.5); /* Cor ao passar o mouse */
         }
 
         .extrato {
@@ -246,24 +152,45 @@
             text-align: left;
         }
 
-        .extrato .entrada {
-            color: #28a745;
+        .entrada {
+            color: #28a745; /* Verde para entradas */
         }
 
-        .extrato .saida {
-            color: #dc3545;
+        .saida {
+            color: #dc3545; /* Vermelho para saídas */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        form input,
+        form select,
+        form button {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <nav>
-        <label class="burger" for="burger">
-            <input type="checkbox" id="burger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-        <ul class="menu" id="menu">
+        <ul class="menu">
             <li><a href="jogadores.html">Jogadores</a></li>
             <li><a href="temporada.html">Temporada</a></li>
             <li><a href="info.html">Informativo</a></li>
@@ -271,21 +198,27 @@
     </nav>
 
     <div class="container">
-        <h1>Controle Financeiro - So Ceva</h1>
-        <div class="saldo" id="saldo">Saldo: Carregando...</div>
+        <h1>Financeiro Só Ceva</h1>
+        <div class="saldo-descricao">Saldo Total</div>
+        <div class="saldo-container">
+            <div class="saldo" id="saldo">R$ 0.00</div>
+        </div>
+        <div class="divider"></div>
 
-        <div class="filter-container">
+        <button class="filter-button" id="toggleFilters"></button> <!-- Botão com imagem apenas -->
+
+        <div class="filter-container" id="filterContainer">
             <input type="text" id="letra" placeholder="Buscar por descrição...">
             <input type="date" id="dataInicio" placeholder="Data Início">
             <input type="date" id="dataFim" placeholder="Data Fim">
-            <button id="btnBuscar" onclick="filtrarLancamentos()">Buscar</button>
+            <button id="btnBuscar">Buscar</button>
         </div>
 
         <div class="extrato">
             <table>
                 <thead>
                     <tr>
-                        <th>Data</th>
+                        <th style="text-align: left;">Data</th>
                         <th>Histórico</th>
                         <th>Valor</th>
                     </tr>
@@ -309,16 +242,16 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, query, where, orderBy } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, Timestamp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
     
         const firebaseConfig = {
-          apiKey: "YOUR_API_KEY",
-          authDomain: "YOUR_AUTH_DOMAIN",
-          projectId: "financeiro-so-ceva",
-          storageBucket: "YOUR_STORAGE_BUCKET",
-          messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-          appId: "YOUR_APP_ID",
-          measurementId: "YOUR_MEASUREMENT_ID"
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "financeiro-so-ceva",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID",
+            measurementId: "YOUR_MEASUREMENT_ID"
         };
     
         const app = initializeApp(firebaseConfig);
@@ -333,9 +266,9 @@
             dataFiltrada.forEach(lancamento => {
                 const tr = document.createElement("tr");
                 tr.className = lancamento.tipo;
-                const dataFormatada = new Date(lancamento.data.seconds * 1000).toLocaleDateString(); // Formata a data
+                const dataFormatada = new Date(lancamento.data.seconds * 1000).toLocaleDateString();
                 tr.innerHTML = `
-                    <td>${dataFormatada}</td>
+                    <td style="text-align: left;">${dataFormatada}</td>
                     <td class="descricao">${lancamento.descricao}</td>
                     <td class="${lancamento.tipo}">R$ ${lancamento.valor.toFixed(2)}</td>
                 `;
@@ -344,7 +277,7 @@
                 saldo += lancamento.tipo === "entrada" ? lancamento.valor : -lancamento.valor;
             });
     
-            document.getElementById("saldo").innerText = `Saldo: R$ ${saldo.toFixed(2)}`;
+            document.getElementById("saldo").innerText = `R$ ${saldo.toFixed(2)}`;
         }
     
         async function carregarLancamentos() {
@@ -361,16 +294,22 @@
             const letra = document.getElementById("letra").value.toLowerCase();
             const dataInicio = document.getElementById("dataInicio").value;
             const dataFim = document.getElementById("dataFim").value;
+    
             let q = query(lancamentosCollection);
     
+            // Filtrar por descrição
             if (letra) {
                 q = query(q, where("descricao", ">=", letra), where("descricao", "<=", letra + '\uf8ff'));
             }
+    
+            // Filtrar por data de início
             if (dataInicio) {
-                q = query(q, where("data", ">=", new Date(dataInicio)));
+                q = query(q, where("data", ">=", Timestamp.fromDate(new Date(dataInicio))));
             }
+    
+            // Filtrar por data de fim
             if (dataFim) {
-                q = query(q, where("data", "<=", new Date(dataFim)));
+                q = query(q, where("data", "<=", Timestamp.fromDate(new Date(dataFim))));
             }
     
             const querySnapshot = await getDocs(q);
@@ -382,7 +321,7 @@
             await addDoc(lancamentosCollection, {
                 descricao,
                 valor,
-                data: new Date(),
+                data: Timestamp.fromDate(new Date()),
                 tipo
             });
             carregarLancamentos();
@@ -399,7 +338,15 @@
             document.getElementById("tipo").value = 'entrada';
         });
     
-        carregarLancamentos();
+        document.getElementById("btnBuscar").addEventListener("click", filtrarLancamentos);
+    
+        // Mostrar ou esconder os filtros
+        document.getElementById("toggleFilters").addEventListener("click", () => {
+            const filterContainer = document.getElementById("filterContainer");
+            filterContainer.style.display = filterContainer.style.display === "none" || filterContainer.style.display === "" ? "flex" : "none";
+        });
+    
+        carregarLancamentos(); // Carregar lançamentos ao iniciar
     </script>
 </body>
 </html>
