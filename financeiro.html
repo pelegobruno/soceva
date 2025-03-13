@@ -78,8 +78,14 @@
         .saldo {
             font-size: 32px; /* Tamanho maior */
             font-weight: bold;
-            color: #28a745;
-            margin: 0; /* Sem margem */
+        }
+
+        .saldo.positivo {
+            color: #28a745; /* Verde para saldo positivo */
+        }
+
+        .saldo.negativo {
+            color: #ff5c5c; /* Vermelho vibrante para saldo negativo */
         }
 
         .divider {
@@ -201,16 +207,16 @@
         <h1>Financeiro Só Ceva</h1>
         <div class="saldo-descricao">Saldo Total</div>
         <div class="saldo-container">
-            <div class="saldo" id="saldo">R$ 0.00</div>
+            <div class="saldo" id="saldo">R$ 0,00</div>
         </div>
         <div class="divider"></div>
 
         <button class="filter-button" id="toggleFilters"></button> <!-- Botão com imagem apenas -->
 
         <div class="filter-container" id="filterContainer">
-            <input type="text" id="letra" placeholder="Buscar por descrição...">
             <input type="date" id="dataInicio" placeholder="Data Início">
             <input type="date" id="dataFim" placeholder="Data Fim">
+            <input type="text" id="descricaoFiltro" placeholder="Buscar por descrição">
             <button id="btnBuscar">Buscar</button>
         </div>
 
@@ -225,6 +231,22 @@
                 </thead>
                 <tbody id="lancamentos-container">
                     <!-- Lançamentos serão adicionados aqui -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="extrato" id="extrato-container" style="display: none;">
+            <h2>Extrato Filtrado</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Data</th>
+                        <th>Histórico</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody id="extrato-lancamentos-container">
+                    <!-- Extrato filtrado será adicionado aqui -->
                 </tbody>
             </table>
         </div>
@@ -258,6 +280,10 @@
         const db = getFirestore(app);
         const lancamentosCollection = collection(db, "lancamentos");
     
+        function formatarMoeda(valor) {
+            return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
         async function atualizarExibicao(dataFiltrada) {
             const container = document.getElementById("lancamentos-container");
             container.innerHTML = "";
@@ -270,14 +296,16 @@
                 tr.innerHTML = `
                     <td style="text-align: left;">${dataFormatada}</td>
                     <td class="descricao">${lancamento.descricao}</td>
-                    <td class="${lancamento.tipo}">R$ ${lancamento.valor.toFixed(2)}</td>
+                    <td class="${lancamento.tipo}">${formatarMoeda(lancamento.valor)}</td>
                 `;
                 container.appendChild(tr);
     
                 saldo += lancamento.tipo === "entrada" ? lancamento.valor : -lancamento.valor;
             });
     
-            document.getElementById("saldo").innerText = `R$ ${saldo.toFixed(2)}`;
+            const saldoContainer = document.getElementById("saldo");
+            saldoContainer.innerText = formatarMoeda(saldo);
+            saldoContainer.className = saldo < 0 ? "saldo negativo" : "saldo positivo"; // Atualiza a classe do saldo
         }
     
         async function carregarLancamentos() {
@@ -289,34 +317,65 @@
             }));
             atualizarExibicao(lancamentosFirestore);
         }
-    
+
         async function filtrarLancamentos() {
-            const letra = document.getElementById("letra").value.toLowerCase();
             const dataInicio = document.getElementById("dataInicio").value;
             const dataFim = document.getElementById("dataFim").value;
+            const descricaoFiltro = document.getElementById("descricaoFiltro").value.toLowerCase();
     
             let q = query(lancamentosCollection);
-    
-            // Filtrar por descrição
-            if (letra) {
-                q = query(q, where("descricao", ">=", letra), where("descricao", "<=", letra + '\uf8ff'));
-            }
+            let extratoFiltrado = [];
     
             // Filtrar por data de início
             if (dataInicio) {
-                q = query(q, where("data", ">=", Timestamp.fromDate(new Date(dataInicio))));
+                const startDate = new Date(dataInicio);
+                startDate.setHours(0, 0, 0, 0); // Define para o início do dia
+                q = query(q, where("data", ">=", Timestamp.fromDate(startDate)));
             }
     
             // Filtrar por data de fim
             if (dataFim) {
-                q = query(q, where("data", "<=", Timestamp.fromDate(new Date(dataFim))));
+                const endDate = new Date(dataFim);
+                endDate.setHours(23, 59, 59, 999); // Define para o fim do dia
+                q = query(q, where("data", "<=", Timestamp.fromDate(endDate)));
             }
-    
-            const querySnapshot = await getDocs(q);
-            const lancamentosFiltrados = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            atualizarExibicao(lancamentosFiltrados);
+
+            // Filtrar por descrição
+            if (descricaoFiltro) {
+                const lancamentosSnapshot = await getDocs(q);
+                extratoFiltrado = lancamentosSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+                    .filter(lancamento => lancamento.descricao.toLowerCase().includes(descricaoFiltro));
+            } else {
+                const querySnapshot = await getDocs(q);
+                extratoFiltrado = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            }
+            
+            // Atualiza o extrato filtrado
+            atualizarExtrato(extratoFiltrado);
         }
-    
+
+        function atualizarExtrato(lancamentos) {
+            const container = document.getElementById("extrato-lancamentos-container");
+            container.innerHTML = "";
+
+            if (lancamentos.length === 0) {
+                container.innerHTML = "<tr><td colspan='3'>Nenhum lançamento encontrado.</td></tr>";
+            } else {
+                lancamentos.forEach(lancamento => {
+                    const tr = document.createElement("tr");
+                    const dataFormatada = new Date(lancamento.data.seconds * 1000).toLocaleDateString();
+                    tr.innerHTML = `
+                        <td style="text-align: left;">${dataFormatada}</td>
+                        <td class="descricao">${lancamento.descricao}</td>
+                        <td class="${lancamento.tipo}">${formatarMoeda(lancamento.valor)}</td>
+                    `;
+                    container.appendChild(tr);
+                });
+            }
+
+            document.getElementById("extrato-container").style.display = "block"; // Mostra o extrato filtrado
+        }
+
         async function adicionarLancamento(descricao, valor, tipo) {
             await addDoc(lancamentosCollection, {
                 descricao,
