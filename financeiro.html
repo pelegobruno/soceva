@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle Financeiro - So Ceva</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Quantico&display=swap" rel="stylesheet"> <!-- Fonte financeira -->
+    <link href="https://fonts.googleapis.com/css2?family=Quantico&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -76,27 +76,27 @@
         }
 
         .saldo {
-            font-size: 32px; /* Tamanho maior */
+            font-size: 32px;
             font-weight: bold;
         }
 
         .saldo.positivo {
-            color: #28a745; /* Verde para saldo positivo */
+            color: #28a745;
         }
 
         .saldo.negativo {
-            color: #ff5c5c; /* Vermelho vibrante para saldo negativo */
+            color: #ff5c5c;
         }
 
         .divider {
             width: 100%;
             height: 2px;
-            background-color: green; /* Cor do traço */
-            margin: 10px 0; /* Margem para espaçamento */
+            background-color: green;
+            margin: 10px 0;
         }
 
         .filter-container {
-            display: none; /* Esconder inicialmente */
+            display: none;
             flex-direction: column;
             margin-bottom: 20px;
         }
@@ -110,25 +110,25 @@
         }
 
         .filter-button {
-            margin: 0 auto; /* Centraliza o botão */
-            width: 80px; /* Largura do botão */
-            height: 80px; /* Altura do botão */
-            background-color: transparent; /* Fundo transparente */
+            margin: 0 auto;
+            width: 80px;
+            height: 80px;
+            background-color: transparent;
             border: none;
             cursor: pointer;
             transition: background-color 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%; /* Bordas arredondadas */
+            border-radius: 50%;
             background-image: url('https://w7.pngwing.com/pngs/527/359/png-transparent-beer-glasses-mug-beer-glass-food-text-thumbnail.png');
-            background-size: contain; /* Ajusta para caber completamente */
-            background-repeat: no-repeat; /* Não repete a imagem */
-            background-position: center; /* Centraliza a imagem */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
         .filter-button:hover {
-            background-color: rgba(255, 215, 0, 0.5); /* Cor ao passar o mouse */
+            background-color: rgba(255, 215, 0, 0.5);
         }
 
         .extrato {
@@ -152,6 +152,7 @@
         .extrato th {
             background-color: #007BFF;
             color: white;
+            cursor: pointer;
         }
 
         .extrato .descricao {
@@ -159,11 +160,11 @@
         }
 
         .entrada {
-            color: #28a745; /* Verde para entradas */
+            color: #28a745;
         }
 
         .saida {
-            color: #dc3545; /* Vermelho para saídas */
+            color: #dc3545;
         }
 
         form {
@@ -192,6 +193,44 @@
         form button:hover {
             background-color: #0056b3;
         }
+
+        /* Estilo para o modal */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+            max-width: 400px; 
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -211,38 +250,22 @@
         </div>
         <div class="divider"></div>
 
-        <button class="filter-button" id="toggleFilters"></button> <!-- Botão com imagem apenas -->
+        <button class="filter-button" id="toggleFilters"></button>
 
         <div class="filter-container" id="filterContainer">
-            <input type="date" id="dataInicio" placeholder="Data Início">
-            <input type="date" id="dataFim" placeholder="Data Fim">
             <input type="text" id="descricaoFiltro" placeholder="Buscar por descrição">
             <button id="btnBuscar">Buscar</button>
         </div>
 
-        <div class="extrato">
-            <table>
-                <thead>
-                    <tr>
-                        <th style="text-align: left;">Data</th>
-                        <th>Histórico</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody id="lancamentos-container">
-                    <!-- Lançamentos serão adicionados aqui -->
-                </tbody>
-            </table>
-        </div>
-
+        <!-- Extrato Filtrado -->
         <div class="extrato" id="extrato-container" style="display: none;">
             <h2>Extrato Filtrado</h2>
             <table>
                 <thead>
                     <tr>
-                        <th style="text-align: left;">Data</th>
+                        <th id="headerData" style="text-align: left;">Data</th>
                         <th>Histórico</th>
-                        <th>Valor</th>
+                        <th id="headerValor">Valor</th>
                     </tr>
                 </thead>
                 <tbody id="extrato-lancamentos-container">
@@ -251,15 +274,48 @@
             </table>
         </div>
 
+        <div class="extrato">
+            <table>
+                <thead>
+                    <tr>
+                        <th id="headerData" style="text-align: left;">Data</th>
+                        <th>Histórico</th>
+                        <th id="headerValor">Valor</th>
+                    </tr>
+                </thead>
+                <tbody id="lancamentos-container">
+                    <!-- Lançamentos serão adicionados aqui -->
+                </tbody>
+            </table>
+        </div>
+
         <form id="form-lancamento">
             <input type="text" id="descricao" placeholder="Descrição" required>
-            <input type="number" id="valor" placeholder="Valor" required>
+            <input type="number" id="valor" placeholder="Valor" value="0" required>
             <select id="tipo">
                 <option value="entrada">Entrada</option>
                 <option value="saida">Saída</option>
             </select>
+            <select id="categoria">
+                <option value="mensalidade">Mensalidade</option>
+                <option value="aporte">Aporte</option>
+                <option value="insumos">Insumos</option>
+            </select>
             <button type="submit">Adicionar Lançamento</button>
         </form>
+    </div>
+
+    <!-- Modal para filtro de valor -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Filtrar por Valor</h2>
+            <label for="valorMin">Valor Mínimo:</label>
+            <input type="number" id="valorMin">
+            <label for="valorMax">Valor Máximo:</label>
+            <input type="number" id="valorMax">
+            <button id="btnAplicarFiltro">Aplicar Filtro</button>
+        </div>
     </div>
 
     <script type="module">
@@ -305,7 +361,7 @@
     
             const saldoContainer = document.getElementById("saldo");
             saldoContainer.innerText = formatarMoeda(saldo);
-            saldoContainer.className = saldo < 0 ? "saldo negativo" : "saldo positivo"; // Atualiza a classe do saldo
+            saldoContainer.className = saldo < 0 ? "saldo negativo" : "saldo positivo";
         }
     
         async function carregarLancamentos() {
@@ -319,38 +375,13 @@
         }
 
         async function filtrarLancamentos() {
-            const dataInicio = document.getElementById("dataInicio").value;
-            const dataFim = document.getElementById("dataFim").value;
             const descricaoFiltro = document.getElementById("descricaoFiltro").value.toLowerCase();
     
-            let q = query(lancamentosCollection);
-            let extratoFiltrado = [];
-    
-            // Filtrar por data de início
-            if (dataInicio) {
-                const startDate = new Date(dataInicio);
-                startDate.setHours(0, 0, 0, 0); // Define para o início do dia
-                q = query(q, where("data", ">=", Timestamp.fromDate(startDate)));
-            }
-    
-            // Filtrar por data de fim
-            if (dataFim) {
-                const endDate = new Date(dataFim);
-                endDate.setHours(23, 59, 59, 999); // Define para o fim do dia
-                q = query(q, where("data", "<=", Timestamp.fromDate(endDate)));
-            }
-
-            // Filtrar por descrição
-            if (descricaoFiltro) {
-                const lancamentosSnapshot = await getDocs(q);
-                extratoFiltrado = lancamentosSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-                    .filter(lancamento => lancamento.descricao.toLowerCase().includes(descricaoFiltro));
-            } else {
-                const querySnapshot = await getDocs(q);
-                extratoFiltrado = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            }
+            const q = query(lancamentosCollection);
+            const lancamentosSnapshot = await getDocs(q);
+            const extratoFiltrado = lancamentosSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+                .filter(lancamento => lancamento.descricao.toLowerCase().includes(descricaoFiltro));
             
-            // Atualiza o extrato filtrado
             atualizarExtrato(extratoFiltrado);
         }
 
@@ -373,15 +404,16 @@
                 });
             }
 
-            document.getElementById("extrato-container").style.display = "block"; // Mostra o extrato filtrado
+            document.getElementById("extrato-container").style.display = "block";
         }
 
-        async function adicionarLancamento(descricao, valor, tipo) {
+        async function adicionarLancamento(descricao, valor, tipo, categoria) {
             await addDoc(lancamentosCollection, {
                 descricao,
                 valor,
                 data: Timestamp.fromDate(new Date()),
-                tipo
+                tipo,
+                categoria
             });
             carregarLancamentos();
         }
@@ -389,12 +421,14 @@
         document.getElementById("form-lancamento").addEventListener("submit", (e) => {
             e.preventDefault();
             const descricao = document.getElementById("descricao").value;
-            const valor = parseFloat(document.getElementById("valor").value);
+            const valor = parseFloat(document.getElementById("valor").value) || 0;
             const tipo = document.getElementById("tipo").value;
-            adicionarLancamento(descricao, valor, tipo);
+            const categoria = document.getElementById("categoria").value;
+            adicionarLancamento(descricao, valor, tipo, categoria);
             document.getElementById("descricao").value = '';
-            document.getElementById("valor").value = '';
+            document.getElementById("valor").value = '0'; // Resetando o valor para 0
             document.getElementById("tipo").value = 'entrada';
+            document.getElementById("categoria").value = 'mensalidade'; // Resetando a categoria para a primeira opção
         });
     
         document.getElementById("btnBuscar").addEventListener("click", filtrarLancamentos);
@@ -404,7 +438,36 @@
             const filterContainer = document.getElementById("filterContainer");
             filterContainer.style.display = filterContainer.style.display === "none" || filterContainer.style.display === "" ? "flex" : "none";
         });
-    
+
+        // Abrir o modal do filtro de valor
+        document.getElementById("headerValor").addEventListener("click", () => {
+            document.getElementById("myModal").style.display = "block";
+        });
+
+        // Fechar o modal
+        document.getElementById("closeModal").addEventListener("click", () => {
+            document.getElementById("myModal").style.display = "none";
+        });
+
+        // Aplicar filtro de valor
+        document.getElementById("btnAplicarFiltro").addEventListener("click", async () => {
+            const valorMin = parseFloat(document.getElementById("valorMin").value) || 0;
+            const valorMax = parseFloat(document.getElementById("valorMax").value) || Infinity;
+            const descricaoFiltro = document.getElementById("descricaoFiltro").value.toLowerCase();
+
+            const q = query(lancamentosCollection);
+            const lancamentosSnapshot = await getDocs(q);
+            const extratoFiltrado = lancamentosSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+                .filter(lancamento => {
+                    const valorLancamento = lancamento.valor;
+                    return valorLancamento >= valorMin && valorLancamento <= valorMax &&
+                           lancamento.descricao.toLowerCase().includes(descricaoFiltro);
+                });
+
+            atualizarExtrato(extratoFiltrado);
+            document.getElementById("myModal").style.display = "none"; // Fecha o modal após aplicar o filtro
+        });
+
         carregarLancamentos(); // Carregar lançamentos ao iniciar
     </script>
 </body>
