@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle Financeiro - So Ceva</title>
+    <title>Controle Financeiro - Só Ceva</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quantico&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f4;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 215, 0, 0.9)); /* Degradê amarelo e branco */
+            background-size: cover; /* Faz a imagem cobrir todo o fundo */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat; /* Não repete a imagem */
             margin: 0;
-            padding: 0;
+            padding: 0; /* Remove o padding padrão */
+            text-align: center;
+            color: rgb(236, 38, 81); /* Ajusta a cor do texto para melhor visibilidade */
+            font-family: Arial, sans-serif; /* Mantém a fonte padrão para o corpo */
+            line-height: 1.5; /* Melhora a legibilidade do texto */
         }
 
         nav {
-            background-color: #007BFF;
-            padding: 15px;
+            background-color: rgba(225, 215, 0, 0.9);
+            padding: 2px;
             color: white;
             text-align: center;
         }
@@ -30,18 +36,6 @@
 
         .menu li {
             margin: 0 10px;
-        }
-
-        .menu a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .menu a:hover {
-            background-color: #0056b3;
         }
 
         .container {
@@ -59,6 +53,32 @@
             text-align: center;
             color: #333;
             margin-bottom: 10px;
+        }
+
+        /* Estilo do botão */
+        button {
+            padding: 10px 20px;
+            text-transform: uppercase;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: 500;
+            color: #ffffff80;
+            text-shadow: none;
+            background: transparent;
+            cursor: pointer;
+            box-shadow: transparent;
+            border: 1px solid #ffffff80;
+            transition: 0.5s ease;
+            user-select: none;
+        }
+
+        #btn:hover,
+        #btn:focus {
+            color: #ffffff;
+            background: #008cff;
+            border: 1px solid #008cff;
+            text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+            box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff, 0 0 100px #008cff;
         }
 
         .saldo-descricao {
@@ -236,9 +256,9 @@
 <body>
     <nav>
         <ul class="menu">
-            <li><a href="jogadores.html">Jogadores</a></li>
-            <li><a href="temporada.html">Temporada</a></li>
-            <li><a href="info.html">Informativo</a></li>
+            <li>
+                <button id="btn" class="botao-inicio">Início</button>
+            </li>
         </ul>
     </nav>
 
@@ -291,7 +311,7 @@
 
         <form id="form-lancamento">
             <input type="text" id="descricao" placeholder="Descrição" required>
-            <input type="number" id="valor" placeholder="Valor" value="0" required>
+            <input type="text" id="valor" placeholder="Valor" value="" required>
             <select id="tipo">
                 <option value="entrada">Entrada</option>
                 <option value="saida">Saída</option>
@@ -426,7 +446,7 @@
             const categoria = document.getElementById("categoria").value;
             adicionarLancamento(descricao, valor, tipo, categoria);
             document.getElementById("descricao").value = '';
-            document.getElementById("valor").value = '0'; // Resetando o valor para 0
+            document.getElementById("valor").value = ''; // Resetando o valor para vazio
             document.getElementById("tipo").value = 'entrada';
             document.getElementById("categoria").value = 'mensalidade'; // Resetando a categoria para a primeira opção
         });
@@ -466,6 +486,11 @@
 
             atualizarExtrato(extratoFiltrado);
             document.getElementById("myModal").style.display = "none"; // Fecha o modal após aplicar o filtro
+        });
+
+        // Adicionando evento de clique ao botão "Início"
+        document.getElementById("btn").addEventListener("click", function() {
+            window.location.href = "index.html"; // Redireciona para a página inicial
         });
 
         carregarLancamentos(); // Carregar lançamentos ao iniciar

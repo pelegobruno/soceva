@@ -172,38 +172,276 @@ tbody tr:nth-child(odd) {
 }
 
 /**********JOGOS ABREM A GRANDE*********/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Estilização do modal */
 .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1; 
+    display: none;
+    position: fixed;
+    z-index: 1000;
     left: 0;
     top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4); 
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fundo escurecido */
+    backdrop-filter: blur(8px); /* Efeito de vidro */
     padding-top: 60px;
 }
 
+/* Conteúdo do modal com efeito de vidro */
 .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto; 
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; 
+    background: rgba(255, 255, 255, 0.15); /* Transparência para efeito de vidro */
+    border-radius: 20px;
+    box-shadow: 0 10px 50px rgba(255, 223, 0, 0.5); /* Sombra amarela suave */
+    width: 90%;
+    max-width: 220px;
+    margin: auto;
+    padding: 40px;
+    text-align: center;
+    border: 2px solid rgba(255, 223, 0, 0.6); /* Borda iluminada */
+    animation: fadeIn 0.5s ease-out;
+    color: white;
+    position: relative;
 }
 
+/* Animação de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Títulos do modal */
+h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 8px rgba(255, 223, 0, 0.8); /* Efeito de brilho dourado */
+}
+
+/* Estilo dos nomes dos times */
+.team-name {
+    font-weight: bold;
+    font-size: 30px;
+    color: #ffd700;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(255, 223, 0, 0.8), 0 0 12px rgba(255, 223, 0, 0.5);
+    animation: glowText 1.5s infinite alternate;
+}
+
+/* Efeito de brilho pulsante */
+@keyframes glowText {
+    from {
+        text-shadow: 0 0 8px rgba(255, 223, 0, 0.8), 0 0 12px rgba(255, 223, 0, 0.5);
+    }
+    to {
+        text-shadow: 0 0 12px rgba(255, 223, 0, 1), 0 0 18px rgba(255, 223, 0, 0.8);
+    }
+}
+
+/* Estilização dos parágrafos */
+p {
+    margin: 12px 0;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Botão de fechar */
 .close {
-    color: #aaa;
-    float: right;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
     font-size: 28px;
     font-weight: bold;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
+.close:hover {
+    transform: rotate(90deg) scale(1.2);
+    color: #ff4444;
     cursor: pointer;
+}
+
+/* Botão de confirmação */
+#confirmButton {
+    background: linear-gradient(45deg, #ffcc00, #ff6600);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 165, 0, 0.5);
+}
+
+#confirmButton:hover {
+    background: linear-gradient(45deg, #ff6600, #ffcc00);
+    transform: scale(1.05);
+}
+
+/* Imagem no modal */
+.modal-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
