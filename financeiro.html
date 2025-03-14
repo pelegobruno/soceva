@@ -3,25 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle Financeiro - Só Ceva</title>
+    <title>Só Ceva</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quantico&display=swap" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 215, 0, 0.9)); /* Degradê amarelo e branco */
-            background-size: cover; /* Faz a imagem cobrir todo o fundo */
-            background-position: center; /* Centraliza a imagem */
-            background-repeat: no-repeat; /* Não repete a imagem */
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 215, 0, 0.9));
             margin: 0;
-            padding: 0; /* Remove o padding padrão */
+            padding: 0;
             text-align: center;
-            color: rgb(236, 38, 81); /* Ajusta a cor do texto para melhor visibilidade */
-            font-family: Arial, sans-serif; /* Mantém a fonte padrão para o corpo */
-            line-height: 1.5; /* Melhora a legibilidade do texto */
+            color: rgb(236, 38, 81);
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
         }
 
         nav {
-            background-color: rgba(225, 215, 0, 0.9);
+            background-color: rgba(192, 177, 90, 0.9);
             padding: 2px;
             color: white;
             text-align: center;
@@ -55,7 +52,6 @@
             margin-bottom: 10px;
         }
 
-        /* Estilo do botão */
         button {
             padding: 10px 20px;
             text-transform: uppercase;
@@ -63,13 +59,10 @@
             font-size: 17px;
             font-weight: 500;
             color: #ffffff80;
-            text-shadow: none;
             background: transparent;
             cursor: pointer;
-            box-shadow: transparent;
             border: 1px solid #ffffff80;
             transition: 0.5s ease;
-            user-select: none;
         }
 
         #btn:hover,
@@ -79,6 +72,21 @@
             border: 1px solid #008cff;
             text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
             box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff, 0 0 100px #008cff;
+        }
+
+        .buscar-button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .buscar-button:hover {
+            background-color: #0056b3;
         }
 
         .saldo-descricao {
@@ -121,8 +129,7 @@
             margin-bottom: 20px;
         }
 
-        .filter-container input,
-        .filter-container button {
+        .filter-container input {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -155,6 +162,8 @@
             display: flex;
             flex-direction: column;
             margin-top: 20px;
+            max-width: 100%; /* Ajuste no tamanho máximo */
+            overflow-x: auto; /* Permite rolagem horizontal se necessário */
         }
 
         .extrato table {
@@ -164,9 +173,10 @@
         }
 
         .extrato th, .extrato td {
-            padding: 10px;
+            padding: 8px; /* Diminuindo o padding para a tabela */
             text-align: right;
             border-bottom: 1px solid #ddd;
+            font-size: 14px; /* Diminuindo o tamanho da fonte */
         }
 
         .extrato th {
@@ -224,7 +234,6 @@
             width: 100%; 
             height: 100%; 
             overflow: auto; 
-            background-color: rgb(0,0,0); 
             background-color: rgba(0,0,0,0.4); 
             padding-top: 60px;
         }
@@ -274,7 +283,7 @@
 
         <div class="filter-container" id="filterContainer">
             <input type="text" id="descricaoFiltro" placeholder="Buscar por descrição">
-            <button id="btnBuscar">Buscar</button>
+            <button id="btnBuscar" class="buscar-button">Buscar</button>
         </div>
 
         <!-- Extrato Filtrado -->
@@ -286,6 +295,7 @@
                         <th id="headerData" style="text-align: left;">Data</th>
                         <th>Histórico</th>
                         <th id="headerValor">Valor</th>
+                        <th id="headerCategoria">Categoria</th> <!-- Nova coluna para categoria -->
                     </tr>
                 </thead>
                 <tbody id="extrato-lancamentos-container">
@@ -301,6 +311,7 @@
                         <th id="headerData" style="text-align: left;">Data</th>
                         <th>Histórico</th>
                         <th id="headerValor">Valor</th>
+                        <th id="headerCategoria">Categoria</th> <!-- Nova coluna para categoria -->
                     </tr>
                 </thead>
                 <tbody id="lancamentos-container">
@@ -340,7 +351,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, Timestamp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, Timestamp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
     
         const firebaseConfig = {
             apiKey: "YOUR_API_KEY",
@@ -355,7 +366,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const lancamentosCollection = collection(db, "lancamentos");
-    
+
         function formatarMoeda(valor) {
             return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
         }
@@ -364,7 +375,7 @@
             const container = document.getElementById("lancamentos-container");
             container.innerHTML = "";
             let saldo = 0;
-    
+
             dataFiltrada.forEach(lancamento => {
                 const tr = document.createElement("tr");
                 tr.className = lancamento.tipo;
@@ -373,17 +384,18 @@
                     <td style="text-align: left;">${dataFormatada}</td>
                     <td class="descricao">${lancamento.descricao}</td>
                     <td class="${lancamento.tipo}">${formatarMoeda(lancamento.valor)}</td>
+                    <td>${lancamento.categoria || 'Aporte'}</td> <!-- Exibindo a categoria -->
                 `;
                 container.appendChild(tr);
-    
+
                 saldo += lancamento.tipo === "entrada" ? lancamento.valor : -lancamento.valor;
             });
-    
+
             const saldoContainer = document.getElementById("saldo");
             saldoContainer.innerText = formatarMoeda(saldo);
             saldoContainer.className = saldo < 0 ? "saldo negativo" : "saldo positivo";
         }
-    
+
         async function carregarLancamentos() {
             const q = query(lancamentosCollection, orderBy("data"));
             const querySnapshot = await getDocs(q);
@@ -396,7 +408,6 @@
 
         async function filtrarLancamentos() {
             const descricaoFiltro = document.getElementById("descricaoFiltro").value.toLowerCase();
-    
             const q = query(lancamentosCollection);
             const lancamentosSnapshot = await getDocs(q);
             const extratoFiltrado = lancamentosSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
@@ -410,7 +421,7 @@
             container.innerHTML = "";
 
             if (lancamentos.length === 0) {
-                container.innerHTML = "<tr><td colspan='3'>Nenhum lançamento encontrado.</td></tr>";
+                container.innerHTML = "<tr><td colspan='4'>Nenhum lançamento encontrado.</td></tr>";
             } else {
                 lancamentos.forEach(lancamento => {
                     const tr = document.createElement("tr");
@@ -419,6 +430,7 @@
                         <td style="text-align: left;">${dataFormatada}</td>
                         <td class="descricao">${lancamento.descricao}</td>
                         <td class="${lancamento.tipo}">${formatarMoeda(lancamento.valor)}</td>
+                        <td>${lancamento.categoria || 'Aporte'}</td> <!-- Exibindo a categoria -->
                     `;
                     container.appendChild(tr);
                 });
@@ -433,11 +445,11 @@
                 valor,
                 data: Timestamp.fromDate(new Date()),
                 tipo,
-                categoria
+                categoria: categoria || 'Aporte' // Definindo categoria padrão ao inserir
             });
             carregarLancamentos();
         }
-    
+
         document.getElementById("form-lancamento").addEventListener("submit", (e) => {
             e.preventDefault();
             const descricao = document.getElementById("descricao").value;
@@ -446,14 +458,13 @@
             const categoria = document.getElementById("categoria").value;
             adicionarLancamento(descricao, valor, tipo, categoria);
             document.getElementById("descricao").value = '';
-            document.getElementById("valor").value = ''; // Resetando o valor para vazio
+            document.getElementById("valor").value = '';
             document.getElementById("tipo").value = 'entrada';
-            document.getElementById("categoria").value = 'mensalidade'; // Resetando a categoria para a primeira opção
+            document.getElementById("categoria").value = 'mensalidade';
         });
-    
+
         document.getElementById("btnBuscar").addEventListener("click", filtrarLancamentos);
-    
-        // Mostrar ou esconder os filtros
+
         document.getElementById("toggleFilters").addEventListener("click", () => {
             const filterContainer = document.getElementById("filterContainer");
             filterContainer.style.display = filterContainer.style.display === "none" || filterContainer.style.display === "" ? "flex" : "none";
@@ -490,7 +501,7 @@
 
         // Adicionando evento de clique ao botão "Início"
         document.getElementById("btn").addEventListener("click", function() {
-            window.location.href = "index.html"; // Redireciona para a página inicial
+            window.location.href = "dashboard.html"; // Redireciona para a página dashboard
         });
 
         carregarLancamentos(); // Carregar lançamentos ao iniciar
