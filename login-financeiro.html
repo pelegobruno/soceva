@@ -51,6 +51,18 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        .back-button {
+            margin-top: 10px;
+            background-color: transparent;
+            color: #007BFF;
+            border: 1px solid #007BFF;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -62,6 +74,7 @@
             <input type="password" id="password" placeholder="Senha" required>
             <button type="submit">Entrar</button>
         </form>
+        <button class="back-button" onclick="voltarParaMenu()">Voltar ao Menu Inicial</button>
     </div>
 
     <script>
@@ -79,6 +92,10 @@
                 alert("Login ou senha incorretos.");
             }
         });
+
+        function voltarParaMenu() {
+            window.location.href = "index.html"; // Ajuste para o caminho correto do menu inicial
+        }
     </script>
 </body>
 </html>

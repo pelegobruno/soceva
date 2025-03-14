@@ -6,21 +6,20 @@
     <title>Só Ceva - Início</title>
     <link rel="stylesheet" href="styles/inicio.css">
     <link rel="manifest" href="/soceva/manifest.json">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 <body>
     <header>
-        <header>
-            <img src="assets/image/logo/SO CEVA.png" alt="Logo Só Ceva" width="180" height="auto">
-            <h1>Bem-vindo ao Só Ceva</h1>
-            <h3>Temporada 2025</h3>
-            <div class="patrocinadores">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmvTGQvi3_Sb_4ZYXZahsOxkYniFMo7wxtvA&s" alt="viwatec" width="20" height="100">
-                <img src="https://online.fliphtml5.com/ktra/xeso/files/page/1.jpg?20200612093654&20200612093654" alt="exportação boteco" width="20" height="100">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCUlPoXtk4UTD5b4auMqqr89hBc9UPotzMhg&s" alt="kr santos personalizados" width="20" height="50">
-                <img src="assets/image/logo/TEK.png" alt="TEK ServiceRS" width="70" height="70">
-                <!-- Adicione mais logos conforme necessário -->
-            </div>
-        </header>
+        <img src="assets/image/logo/SO CEVA.png" alt="Logo Só Ceva" width="180" height="auto">
+        <h1>Bem-vindo ao Só Ceva</h1>
+        <h3>Temporada 2025</h3>
+        <div class="patrocinadores">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmvTGQvi3_Sb_4ZYXZahsOxkYniFMo7wxtvA&s" alt="viwatec" width="20" height="100">
+            <img src="https://online.fliphtml5.com/ktra/xeso/files/page/1.jpg?20200612093654&20200612093654" alt="exportação boteco" width="20" height="100">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCUlPoXtk4UTD5b4auMqqr89hBc9UPotzMhg&s" alt="kr santos personalizados" width="20" height="50">
+            <img src="assets/image/logo/TEK.png" alt="TEK ServiceRS" width="70" height="70">
+        </div>
         <hr class="linha-estilizada">
     </header>
     <nav>
@@ -28,10 +27,11 @@
             &#9776; <!-- Ícone de traço (hambúrguer) -->
         </div>
         <ul class="menu" id="menu">
-            <li><a href="jogadores.html">Jogadores</a></li> <!-- Link para a página de jogadores -->
-            <li><a href="temporada.html">Temporada</a></li> <!-- Link para a página de temporada -->
-            <a href="info.html">Informativo</a>
-            <a href="login-financeiro.html">Financeiro</a>
+            <!-- Remover links de navegação -->
+            <li><span style="color: grey;">Jogadores</span></li>
+            <li><span style="color: grey;">Temporada</span></li>
+            <li><span style="color: grey;">Informativo</span></li>
+            <li><span style="color: grey;">Financeiro</span></li>
         </ul>
     </nav>
     
@@ -58,6 +58,7 @@
                 </div>
             </div>
         </section>
+
         <section class="goleadores">
             <h3>Goleadores da Temporada</h3>
             <table id="tabela-goleadores-inicio">
@@ -72,19 +73,60 @@
                 </tbody>
             </table>
         </section>
+
+        <div id="saldo-inicial">R$ 0,00</div>
+
+        <!-- Seção do Gráfico de Saúde do Financeiro -->
+        <section class="grafico-financeiro">
+            <h3>Saúde do Financeiro - Saldo de Caixa</h3>
+            <canvas id="financeiro-chart" width="400" height="200"></canvas>
+        </section>
+
+        <!-- Ícone de Sair -->
+        <div id="logout-icon" style="margin-top: 20px;">
+            <i class="fas fa-sign-out-alt" onclick="logout()" style="font-size: 24px; cursor: pointer;"></i>
+        </div>
     </main>
 
-<script src="scripts/script.js"></script>
-<script src="scripts/automação.js"></script>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/automação.js"></script>
+    
+    <script>
+        // Código para criar o gráfico
+        const ctx = document.getElementById('financeiro-chart').getContext('2d');
+        const financeiroChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+                datasets: [{
+                    label: 'Saldo de Caixa',
+                    data: [5000, 7000, 3000, 8000, 6000, 9000],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
 
+        function logout() {
+            // Redireciona para a página de login
+            window.location.href = "login-jogadores.html"; // Ajuste para o caminho correto do login
+        }
 
-<script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js")
-        .then(() => console.log("Service Worker registrado com sucesso!"))
-        .catch(error => console.log("Erro ao registrar Service Worker:", error));
-    }
-  </script>
-  
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("sw.js")
+                .then(() => console.log("Service Worker registrado com sucesso!"))
+                .catch(error => console.log("Erro ao registrar Service Worker:", error));
+        }
+    </script>
 </body>
 </html>

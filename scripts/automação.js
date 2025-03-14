@@ -4,7 +4,12 @@ function toggleMenu() {
             menu.classList.toggle('active');
         }
 
+
+
+
+
         /******buscador de informações la da temporada */
+
         async function carregarTemporada() {
             try {
                 // Busca o HTML da temporada
