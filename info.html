@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Adicionando Font Awesome para o ícone de logout -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: linear-gradient(to bottom, #ffeb3b, #fff);
+            text-align: center;
+            color: #333;
+        }
+        header {
+            position: relative;
+            background-color: #007BFF;
+            padding: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        header img {
+            width: 150px;
+        }
+        h1, h2 {
+            color: #007BFF;
+        }
+        nav {
+            display: flex; /* Usando flexbox */
+            justify-content: space-between; /* Espaçamento entre os itens */
+            align-items: center; /* Alinhamento vertical */
+            background-color: #007BFF;
+            padding: 5px;
+            margin: 1px 0;
+        }
+        nav a {
+            flex: 1; /* Cada link ocupa um espaço igual */
+            color: white;
+            text-decoration: none;
+            text-align: center; /* Centraliza o texto */
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 38px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .loader {
+            position: absolute;
+            top: 5px; /* Ajuste para mover o loader para cima */
+            left: 38%; /* Centraliza horizontalmente */
+            transform: translateX(-50%); /* Centraliza o loader */
+            width: 80px;
+            height: 80px;
+            border: 2px solid rgba(234, 255, 42, 0.986);
+            border-top: 4px solid #070707;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        ul {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background: #f2f2f2;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .button {
+            display: none; /* Esconde o botão */
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        iframe {
+            width: 100%;
+            height: 600px; /* Ajuste a altura conforme necessário */
+            border: none;
+        }
+        
+        /* Estilos para o botão de logout */
+        .header-container {
+            position: relative;
+            width: 100%;
+        }
+        
+        .logout-container {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            z-index: 100;
+        }
+        
+        .logout-btn {
+            font-size: 24px;
+            cursor: pointer;
+            color: rgb(182, 48, 48);
+            background: none;
+            border: none;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+        
+        .logout-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .logout-btn span {
+            font-size: 14px;
+            margin-left: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .logout-container {
+                top: 5px;
+                right: 15px;
+            }
+        }
+    </style>
+    <script>
+        function showMessage() {
+            alert("Obrigado por usar nossos aplicativos!");
+        }
+        
+        function logout() {
+            // Redireciona para a página de login
+            window.location.href = "index.html"; // Ajuste para o caminho correto do login
+        }
+    </script>
+</head>
+<body>
+    <div class="header-container">
+        <header>
+            <img src="assets/image/logo/SO CEVA.png" alt="Logo Só Ceva">
+            <div class="loader"></div> <!-- Loader posicionado acima do título -->
+        </header>
+        
+        <!-- Logout posicionado no canto superior direito -->
+        <div class="logout-container">
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sair</span>
+            </button>
+        </div>
+    </div>
+    
+    <h1>Só Ceva</h1>  <h1>Informa</h1> <!-- Título abaixo do logo -->
+    <nav>
+        <a href="dashboard.html">Início</a>
+    </nav>
+    <div class="container">
+        <p>Bem-vindo ao nosso aplicativo! Aqui você encontra todas as informações sobre nossas atividades.</p>
+        <p><strong>Versão:</strong> 2.0.3</p>
+        <p><strong>Desenvolvedor:</strong> Pelego Bruno</p>
+        <p><strong>Contato:</strong> contato@socevaapp.com</p>
+        <h2>Recursos do Aplicativo:</h2>
+        <ul>
+            <li>Marcação de jogos e eventos da equipe</li>
+            <li>Informações sobre temporadas e campeonatos</li>
+            <li>Gerenciamento de escalações e estatísticas dos jogadores</li>
+        </ul>
+
+        
+        <title>Assinaturas</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <style>
+            body {
+                font-family: 'Poppins', sans-serif;
+                margin: 0;
+                background: linear-gradient(to bottom, #ffeb3b, #fff);
+                text-align: center;
+                color: #333;
+            }
+            canvas {
+                border: 1px solid #000;
+            }
+        </style>
+        <script type="module">
+            // Importar as funções necessárias do SDK do Firebase
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+            import { getFirestore, collection, addDoc, onSnapshot, orderBy, query } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+    
+            // Configuração do Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyDBLvUiI3cosf-oFo6bGp7RiG3NzbrejyY",
+                authDomain: "soceva-27ad0.firebaseapp.com",
+                projectId: "soceva-27ad0",
+                storageBucket: "soceva-27ad0.appspot.com",
+                messagingSenderId: "913329753288",
+                appId: "1:913329753288:web:e72900891ecd74342129fd"
+            };
+    
+            // Inicializar Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+    
+            // Função para carregar assinaturas do Firestore
+            function carregarAssinaturas() {
+                const q = query(collection(db, "assinaturas"), orderBy("timestamp"));
+                onSnapshot(q, snapshot => {
+                    const assinaturasSalvasContainer = document.getElementById("assinaturasSalvasContainer");
+                    assinaturasSalvasContainer.innerHTML = "";
+                    snapshot.forEach(doc => {
+                        const assinatura = doc.data().imagem;
+                        const img = document.createElement("img");
+                        img.src = assinatura;
+                        img.style.border = "1px solid #000";
+                        img.style.maxWidth = "100px";
+                        assinaturasSalvasContainer.appendChild(img);
+                    });
+                });
+            }
+    
+            // Função para salvar a assinatura no Firestore
+            async function salvarAssinatura(imagem) {
+                try {
+                    await addDoc(collection(db, "assinaturas"), {
+                        imagem: imagem,
+                        timestamp: new Date()
+                    });
+                    console.log("Assinatura salva com sucesso!");
+                } catch (e) {
+                    console.error("Erro ao adicionar documento: ", e);
+                }
+            }
+    
+            // Funções de desenho
+            document.addEventListener("DOMContentLoaded", () => {
+                const assinaturaCanvas = document.getElementById("assinaturaCanvas");
+                const ctx = assinaturaCanvas.getContext("2d");
+                let desenhando = false;
+    
+                const iniciarDesenho = (event) => {
+                    desenhando = true;
+                    desenhar(event);
+                };
+    
+                const pararDesenho = () => {
+                    desenhando = false;
+                    ctx.beginPath();
+                };
+    
+                const desenhar = (event) => {
+                    if (!desenhando) return;
+    
+                    ctx.lineWidth = 2;
+                    ctx.lineCap = "round";
+                    ctx.strokeStyle = "#000";
+    
+                    const rect = assinaturaCanvas.getBoundingClientRect();
+                    const x = (event.clientX || event.touches[0].clientX) - rect.left;
+                    const y = (event.clientY || event.touches[0].clientY) - rect.top;
+    
+                    ctx.lineTo(x, y);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(x, y);
+                };
+    
+                document.getElementById("mostrarAssinaturaBtn").addEventListener("click", () => {
+                    document.getElementById("assinaturaContainer").style.display = "block";
+                    document.getElementById("mostrarAssinaturaBtn").style.display = "none";
+                });
+    
+                // Eventos para mouse
+                assinaturaCanvas.addEventListener("mousedown", iniciarDesenho);
+                assinaturaCanvas.addEventListener("mouseup", pararDesenho);
+                assinaturaCanvas.addEventListener("mousemove", desenhar);
+    
+                // Eventos para toque
+                assinaturaCanvas.addEventListener("touchstart", (event) => {
+                    event.preventDefault();
+                    iniciarDesenho(event.touches[0]);
+                });
+                assinaturaCanvas.addEventListener("touchend", pararDesenho);
+                assinaturaCanvas.addEventListener("touchmove", (event) => {
+                    event.preventDefault();
+                    desenhar(event.touches[0]);
+                });
+    
+                document.getElementById("limparAssinaturaBtn").addEventListener("click", () => {
+                    ctx.clearRect(0, 0, assinaturaCanvas.width, assinaturaCanvas.height);
+                });
+    
+                document.getElementById("salvarAssinaturaBtn").addEventListener("click", () => {
+                    const imagem = assinaturaCanvas.toDataURL("image/png");
+                    console.log("Imagem capturada: ", imagem);
+                    salvarAssinatura(imagem).then(() => {
+                        carregarAssinaturas();
+                        ctx.clearRect(0, 0, assinaturaCanvas.width, assinaturaCanvas.height);
+                    });
+                });
+    
+                // Carregar assinaturas ao abrir a página
+                carregarAssinaturas();
+            });
+        </script>
+    </head>
+    <body>
+        <h2>Estatuto SO CEVA</h2>
+        <iframe src="https://drive.google.com/file/d/124uOFNi9R-GsB3lEzyWg6ByPdkyq1MFU/preview" allowfullscreen></iframe>
+    
+        <button id="mostrarAssinaturaBtn">✍️ Assinar Estatuto</button>
+        <div id="assinaturaContainer" style="display: none; margin-top: 20px;">
+            <h3>Assine aqui</h3>
+            <canvas id="assinaturaCanvas" width="300" height="150"></canvas>
+            <br>
+            <button id="limparAssinaturaBtn">🗑 Limpar</button>
+            <button id="salvarAssinaturaBtn">💾 Salvar</button>
+        </div>
+    
+        <h3>Assinaturas Salvas:</h3>
+        <div id="assinaturasSalvasContainer"></div>
+
+        <a href="#" class="button" onclick="showMessage()">📲 Baixar App</a> <!-- Botão escondido -->
+    </div>
+</body>
+</html>
