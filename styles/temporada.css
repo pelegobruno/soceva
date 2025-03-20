@@ -1,0 +1,447 @@
+/**********CORPO + H3 E FONTS**********/
+body {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 215, 0, 0.9)); /* Degradê amarelo e branco */
+    background-size: cover; /* Faz a imagem cobrir todo o fundo */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Não repete a imagem */
+    margin: 0;
+    padding: 0; /* Remove o padding padrão */
+    text-align: center;
+    color: rgb(236, 38, 81); /* Ajusta a cor do texto para melhor visibilidade */
+    font-family: Arial, sans-serif; /* Mantém a fonte padrão para o corpo */
+    line-height: 1.5; /* Melhora a legibilidade do texto */
+}
+
+h3 {
+    font-family: 'tipografiaRealMadrid', sans-serif; /* Aplica a fonte somente ao h3 */
+}
+
+@font-face {
+    font-family: 'TipografiaRealMadrid';
+    src: url('../assets/fonts/TIPOGRAFIA-REAL-MADRID/RealMadrid2024_SportsFonts.otf') format('opentype');
+}
+
+/**********MENU / ABAS**********/
+nav {
+    position: absolute; /* Posiciona o nav em relação ao corpo */
+    top: 154px; /* Distância do topo */
+    left: 10px; /* Distância da esquerda */
+}
+
+.menu-toggle {
+    font-size: 30px; /* Tamanho do ícone de traço */
+    cursor: pointer; /* Mão ao passar o mouse */
+    color: rgb(236, 38, 81); /* Cor do ícone */
+}
+
+.menu {
+    list-style-type: none; /* Remove os marcadores da lista */
+    padding: 0; /* Remove o preenchimento padrão */
+    margin: 0; /* Remove a margem padrão */
+    display: none; /* Oculta o menu por padrão */
+    flex-direction: column; /* Alinha os itens em coluna */
+    background-color: white; /* Fundo do menu */
+    border: 1px solid rgb(236, 38, 81); /* Bordas do menu */
+    position: absolute; /* Posiciona o menu em relação ao nav */
+    top: 35px; /* Distância do topo em relação ao botão */
+    left: 0; /* Alinha à esquerda */
+    z-index: 1000; /* Garante que o menu esteja acima de outros elementos */
+}
+
+.menu.active {
+    display: flex; /* Mostra o menu quando ativo */
+}
+
+.menu li {
+    margin: 5px 0; /* Espaçamento entre os itens */
+}
+
+.menu a {
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: rgb(236, 38, 81); /* Cor do texto dos links */
+    border-bottom: 1px dashed rgb(236, 38, 81); /* Linha pontilhada abaixo do link */
+    padding: 5px 0; /* Espaçamento interno */
+}
+
+.menu a:hover {
+    color: white; /* Mudança de cor ao passar o mouse */
+    background-color: rgba(236, 38, 81, 0.3); /* Fundo ao passar o mouse */
+}
+
+/* Estilo da linha estilizada */
+.linha-estilizada {
+    border: none; /* Remove a borda padrão */
+    height: 4px; /* Altura da linha */
+    background: linear-gradient(to right, #007bff, #6610f2); /* Gradiente de cor */
+    width: 60%; /* Largura da linha */
+    margin: 10px auto; /* Centraliza a linha e adiciona margem acima e abaixo */
+    border-radius: 5px; /* Arredonda as bordas da linha */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra */
+}
+
+/* 🔹 Estilização Geral da Tabela */
+
+
+table {
+    width: 100%; /* Agora ocupa toda a tela corretamente */
+    max-width: 75px; /* Evita que fique muito grande */
+    margin: 0px auto; /* Centraliza horizontalmente */
+    border-collapse: collapse;
+    font-size: 14px; /* Define um tamanho de fonte adequado */
+}
+
+/* Cabeçalho e células */
+th, td {
+    border: 0px solid rgb(236, 38, 81); /* Ativa as bordas */
+    padding: 6px; /* Melhor espaçamento interno */
+    text-align: center;
+}
+
+th {
+    background-color: rgba(236, 38, 81, 0.8);
+    color: white;
+    font-size: 12px;
+}
+
+/* Alterna cores entre as linhas */
+tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+tbody tr:nth-child(odd) {
+    background-color: rgba(255, 255, 215, 0.8);
+}
+
+/* 📌 🔥 RESPONSIVIDADE: Ajuste para telas menores */
+@media (max-width: 600px) {
+    table {
+        width: 90%; /* Mantém um espaçamento nas laterais */
+        font-size: 12px;
+        margin: 20px auto; /* Centraliza */
+    }
+
+    thead {
+        display: none; /* Esconde o cabeçalho na versão mobile */
+    }
+
+    tbody, tr, td {
+        display: block;
+        width: 100%;
+    }
+
+    tbody tr {
+        border: 1px solid rgb(236, 38, 81);
+        margin-bottom: 10px;
+        padding: 6px;
+        background-color: rgba(255, 255, 215, 0.8);
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2px;
+        font-size: 8px; /* Ajuste fino no tamanho da fonte */
+        border-bottom: 2px solid rgb(236, 38, 81);
+    }
+
+    td:last-child {
+        border-bottom: none;
+    }
+
+    /* 🔹 Adiciona um rótulo antes de cada campo */
+    td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: rgb(236, 38, 81);
+        font-size: 10px;
+    }
+
+    /* 🔥 Ajuste para listas dentro da tabela */
+    td ul {
+        font-size: 6px;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        margin-right: 180px;
+    }
+
+    td ul li {
+        margin-bottom: 0px;
+    }
+}
+
+/**********JOGOS ABREM A GRANDE*********/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Estilização do modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fundo escurecido */
+    backdrop-filter: blur(8px); /* Efeito de vidro */
+    padding-top: 60px;
+}
+
+/* Conteúdo do modal com efeito de vidro */
+.modal-content {
+    background: rgba(255, 255, 255, 0.15); /* Transparência para efeito de vidro */
+    border-radius: 20px;
+    box-shadow: 0 10px 50px rgba(255, 223, 0, 0.5); /* Sombra amarela suave */
+    width: 90%;
+    max-width: 220px;
+    margin: auto;
+    padding: 40px;
+    text-align: center;
+    border: 2px solid rgba(255, 223, 0, 0.6); /* Borda iluminada */
+    animation: fadeIn 0.5s ease-out;
+    color: white;
+    position: relative;
+}
+
+/* Animação de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Títulos do modal */
+h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 8px rgba(255, 223, 0, 0.8); /* Efeito de brilho dourado */
+}
+
+/* Estilo dos nomes dos times */
+.team-name {
+    font-weight: bold;
+    font-size: 30px;
+    color: #ffd700;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(255, 223, 0, 0.8), 0 0 12px rgba(255, 223, 0, 0.5);
+    animation: glowText 1.5s infinite alternate;
+}
+
+/* Efeito de brilho pulsante */
+@keyframes glowText {
+    from {
+        text-shadow: 0 0 8px rgba(255, 223, 0, 0.8), 0 0 12px rgba(255, 223, 0, 0.5);
+    }
+    to {
+        text-shadow: 0 0 12px rgba(255, 223, 0, 1), 0 0 18px rgba(255, 223, 0, 0.8);
+    }
+}
+
+/* Estilização dos parágrafos */
+p {
+    margin: 12px 0;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Botão de fechar */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.close:hover {
+    transform: rotate(90deg) scale(1.2);
+    color: #ff4444;
+    cursor: pointer;
+}
+
+/* Botão de confirmação */
+#confirmButton {
+    background: linear-gradient(45deg, #ffcc00, #ff6600);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 165, 0, 0.5);
+}
+
+#confirmButton:hover {
+    background: linear-gradient(45deg, #ff6600, #ffcc00);
+    transform: scale(1.05);
+}
+
+/* Imagem no modal */
+.modal-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}

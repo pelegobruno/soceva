@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Jogadores - Só Ceva</title>
+    <!-- Adicionando meta tags para PWA -->
+    <meta name="theme-color" content="#ec2651">
+    <meta name="description" content="Aplicativo S.C. Só Ceva para jogadores">
+    
+    <!-- Vinculando o manifest.json -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Ícone para iOS -->
+    <link rel="apple-touch-icon" href="./assets/icons/SO-CEVA-192.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'beer-amber': '#F4B800',  // Cor amarela do botão da imagem
+                        'beer-border': '#F4B80030', // Borda amarela transparente
+                        'app-primary': '#ec2651', // Cor primária do aplicativo
+                        'app-background': '#ffcc00', // Cor de fundo do aplicativo
+                    },
+                    boxShadow: {
+                        'inner-light': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="h-full bg-white dark:bg-gray-900">
+    <div class="flex justify-center items-center min-h-screen p-4">
+        <div class="login-container bg-white dark:bg-gray-900 rounded-3xl shadow-lg p-8 w-full max-w-md transition-all duration-300 border-2 border-beer-border dark:border-beer-border relative">
+            <!-- Logo -->
+            <div class="flex justify-center mb-8">
+                <div class="w-24 h-24 rounded-full border-2 border-beer-amber flex items-center justify-center">
+                    <img src="assets/image/logo/SO CEVA.png" alt="Logo Só Ceva" class="w-20 h-20 object-contain">
+                </div>
+            </div>
+
+            <h2 class="text-xl font-bold text-center text-gray-800 dark:text-white mb-8">S.C. Só Ceva</h2>
+            
+            <form id="login-form" class="space-y-5">
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        id="username" 
+                        placeholder="Login" 
+                        required
+                        class="w-full px-4 py-3 rounded-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white focus:outline-none focus:ring-1 focus:ring-beer-amber transition-all duration-300 text-base shadow-inner-light"
+                    >
+                    <span class="absolute top-3 right-4 text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </span>
+                </div>
+                
+                <div class="relative">
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="Senha" 
+                        required
+                        class="w-full px-4 py-3 rounded-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white focus:outline-none focus:ring-1 focus:ring-beer-amber transition-all duration-300 text-base shadow-inner-light"
+                    >
+                    <span class="absolute top-3 right-4 text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </span>
+                </div>
+                
+                <div id="error-message" class="hidden text-red-500 text-sm text-center p-2"></div>
+                
+                <button 
+                    type="submit" 
+                    class="w-full bg-beer-amber text-white font-medium py-3 px-4 rounded-full transition-all duration-300 hover:bg-opacity-90 focus:outline-none"
+                >
+                    <div class="flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                        Entrar
+                    </div>
+                </button>
+            </form>
+            
+            <!-- Botão de instalação do app - oculto por padrão, aparecerá apenas quando o app puder ser instalado -->
+            <button 
+                id="install-button" 
+                class="hidden w-full mt-4 bg-app-primary text-white font-medium py-3 px-4 rounded-full transition-all duration-300 hover:bg-opacity-90 focus:outline-none"
+            >
+                <div class="flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                    </svg>
+                    Instalar Aplicativo
+                </div>
+            </button>
+            
+            <!-- Banner para instalação (para iOS) -->
+            <div id="ios-install-banner" class="hidden mt-4 p-4 bg-gray-100 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-app-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div class="ml-3 flex-1">
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                            Instale o app clicando em <span class="font-medium">Compartilhar</span> 
+                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                            </svg>
+                            e depois <span class="font-medium">Adicionar à Tela de Início</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Caneca de cerveja decorativa -->
+            <div class="flex justify-center mt-6">
+                <div class="text-beer-amber opacity-80">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M5.5 22h-2c-1.1 0-2-.9-2-2v-7c0-1.1.9-2 2-2h2v11zm15.57-9.34c-.38-.5-.97-.84-1.65-.9L16 11.53V8c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14h8c1.1 0 2-.9 2-2v-3.53l3.42-.23c.68-.06 1.27-.4 1.65-.9.38-.5.55-1.15.4-1.8l-.83-3.68c-.15-.65-.32-1.3-.7-1.8zM8.24 18.97h-.04l.03-.03c.01 0 .01.03.01.03zm7.96-3.03c-.31.03-.63.03-.95.03h-6.5v-8h6.5c.32 0 .64 0 .95.04l1.8.26L19.31 14l-1.31 1.68-1.8.26z"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Versão do App -->
+            <div class="text-center mt-3 text-xs text-gray-500 dark:text-gray-400">
+                versão 2.0.3
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Detectar preferência de tema escuro/claro
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // Defina um objeto com os logins e senhas dos jogadores
+        const jogadores = {
+            "Bruno": "240190",
+            "Jeferson": "191283",
+            "Cassiano": "170590",
+            "Everton": "50482",
+            "Luis": "040984",
+            "Vinicius": "250992",
+            "Andre": "131082",
+            "Alexsandro": "260579",
+            "Marcio": "150198",
+            "Robson": "091088",
+            "Roberth" : "060895",
+            "jogador01": "senha01",
+            // Adicione mais jogadores conforme necessário
+        };
+
+        const loginForm = document.getElementById("login-form");
+        const errorMessage = document.getElementById("error-message");
+
+        loginForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Impede o envio do formulário
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            
+            // Esconder mensagem de erro anterior
+            errorMessage.classList.add("hidden");
+
+            // Simular processamento
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalButtonContent = submitButton.innerHTML;
+            submitButton.innerHTML = '<svg class="animate-spin h-5 w-5 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>';
+            
+            setTimeout(() => {
+                // Verifica se o login e a senha estão corretos
+                if (jogadores[username] && jogadores[username] === password) {
+                    // Mostra uma mensagem de sucesso antes de redirecionar
+                    submitButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>';
+                    
+                    // Redireciona para a página inicial após um curto período
+                    setTimeout(() => {
+                        window.location.href = "dashboard.html"; // Ajuste para o caminho correto do menu inicial
+                    }, 500);
+                } else {
+                    // Mostra mensagem de erro
+                    errorMessage.textContent = "Login ou senha incorretos. Tente novamente.";
+                    errorMessage.classList.remove("hidden");
+                    
+                    // Restaura o botão
+                    submitButton.innerHTML = originalButtonContent;
+                    
+                    // Anima os campos com erro sutilmente
+                    document.getElementById("username").classList.add('ring-red-500', 'ring-1');
+                    document.getElementById("password").classList.add('ring-red-500', 'ring-1');
+                    
+                    // Remove as classes de erro após um tempo
+                    setTimeout(() => {
+                        document.getElementById("username").classList.remove('ring-red-500', 'ring-1');
+                        document.getElementById("password").classList.remove('ring-red-500', 'ring-1');
+                    }, 2000);
+                }
+            }, 800);
+        });
+
+        // Service Worker para PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(function(registration) {
+                        console.log('Service Worker registrado com sucesso:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('Falha ao registrar Service Worker:', error);
+                    });
+            });
+        }
+
+        // Verificar se o aplicativo já está instalado (em modo standalone)
+        function isAppInstalled() {
+            // Verifica se está rodando como aplicativo instalado
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                return true;
+            }
+            // Verifica aplicativo instalado no iOS
+            if (window.navigator.standalone === true) {
+                return true;
+            }
+            return false;
+        }
+
+        // Se o aplicativo já estiver instalado, não mostramos o botão de instalação
+        if (isAppInstalled()) {
+            console.log('Aplicativo já está instalado');
+        } else {
+            // Lógica para botão de instalação do PWA apenas se não estiver em modo standalone
+            let deferredPrompt;
+            const installButton = document.getElementById('install-button');
+            const iosInstallBanner = document.getElementById('ios-install-banner');
+
+            // Capturamos o evento beforeinstallprompt
+            window.addEventListener('beforeinstallprompt', (e) => {
+                // Prevenir o prompt automático
+                e.preventDefault();
+                // Armazenar o evento para usar mais tarde
+                deferredPrompt = e;
+                // Mostrar o botão de instalação apenas para dispositivos que suportam
+                installButton.classList.remove('hidden');
+            });
+
+            // Manipulador do botão de instalação
+            installButton.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    // Mostrar o prompt de instalação
+                    deferredPrompt.prompt();
+                    // Aguardar a escolha do usuário
+                    const { outcome } = await deferredPrompt.userChoice;
+                    // Registrar o resultado
+                    console.log(`Resultado da instalação: ${outcome}`);
+                    
+                    // Se o usuário aceitou instalar, escondemos o botão
+                    if (outcome === 'accepted') {
+                        installButton.classList.add('hidden');
+                    }
+                    
+                    // Limpar a referência
+                    deferredPrompt = null;
+                }
+            });
+
+            // Detectar se estamos no iOS
+            function isIOS() {
+                return /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
+            }
+
+            // Para dispositivos iOS que não mostram prompt nativo de instalação
+            if (isIOS() && !isAppInstalled()) {
+                // Mostrar o botão de instalação para iOS também
+                installButton.classList.remove('hidden');
+                
+                // Mostrar instruções especiais para iOS quando o botão for clicado
+                installButton.addEventListener('click', function() {
+                    iosInstallBanner.classList.remove('hidden');
+                });
+            }
+        }
+    </script>
+    
+    <!-- Service Worker para o PWA -->
+    <script>
+        // Conteúdo mínimo para o service-worker.js
+        const serviceWorkerContent = `
+        // Este é um Service Worker mínimo para o PWA
+        self.addEventListener('install', (event) => {
+            console.log('Service Worker instalado');
+        });
+
+        self.addEventListener('activate', (event) => {
+            console.log('Service Worker ativado');
+        });
+
+        self.addEventListener('fetch', (event) => {
+            event.respondWith(fetch(event.request));
+        });
+        `;
+
+        // Criar o service-worker.js dinamicamente (para fins de demonstração)
+        // Na prática, você deve ter um arquivo service-worker.js real
+        const blob = new Blob([serviceWorkerContent], {type: 'application/javascript'});
+        const serviceWorkerURL = URL.createObjectURL(blob);
+
+        // Registrar o Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register(serviceWorkerURL)
+                .then(reg => console.log('Service Worker registrado:', reg))
+                .catch(err => console.error('Erro ao registrar Service Worker:', err));
+        }
+    </script>
+</body>
+</html>
